@@ -7,6 +7,8 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
+#import "RSTinCanOfflineConnector.h"
+#import "TestSemaphor.h"
 
 @interface TinCanObjC_OfflineTests : SenTestCase
 

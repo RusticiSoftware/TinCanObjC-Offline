@@ -51,6 +51,7 @@
 		D3062C5C16FBFCC0004F746A /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3062C5B16FBFCC0004F746A /* CoreFoundation.framework */; };
 		D3062C6216FBFCC1004F746A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D3062C6016FBFCC1004F746A /* InfoPlist.strings */; };
 		D3062C6916FBFCE5004F746A /* TCLocalStorage.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = D3062C4216FBFB35004F746A /* TCLocalStorage.xcdatamodeld */; };
+		D3062C6C16FC02B2004F746A /* TestSemaphor.m in Sources */ = {isa = PBXBuildFile; fileRef = D3062C6B16FC02B2004F746A /* TestSemaphor.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -147,6 +148,8 @@
 		D3062C5F16FBFCC1004F746A /* TinCanObjC-OfflineResources-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TinCanObjC-OfflineResources-Info.plist"; sourceTree = "<group>"; };
 		D3062C6116FBFCC1004F746A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D3062C6316FBFCC1004F746A /* TinCanObjC-OfflineResources-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TinCanObjC-OfflineResources-Prefix.pch"; sourceTree = "<group>"; };
+		D3062C6A16FC02B2004F746A /* TestSemaphor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestSemaphor.h; sourceTree = "<group>"; };
+		D3062C6B16FC02B2004F746A /* TestSemaphor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSemaphor.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,6 +247,8 @@
 		D3062B9516FBFA2D004F746A /* TinCanObjC-OfflineTests */ = {
 			isa = PBXGroup;
 			children = (
+				D3062C6A16FC02B2004F746A /* TestSemaphor.h */,
+				D3062C6B16FC02B2004F746A /* TestSemaphor.m */,
 				D3062B9B16FBFA2D004F746A /* TinCanObjC_OfflineTests.h */,
 				D3062B9C16FBFA2D004F746A /* TinCanObjC_OfflineTests.m */,
 				D3062B9616FBFA2D004F746A /* Supporting Files */,
@@ -485,6 +490,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3062B9D16FBFA2D004F746A /* TinCanObjC_OfflineTests.m in Sources */,
+				D3062C6C16FC02B2004F746A /* TestSemaphor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
