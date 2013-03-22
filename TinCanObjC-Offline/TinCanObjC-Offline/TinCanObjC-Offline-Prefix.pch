@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'TinCanObjC-Offline' target in the 'TinCanObjC-Offline' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif
