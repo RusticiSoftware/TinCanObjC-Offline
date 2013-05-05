@@ -23,11 +23,11 @@
     
     NSMutableDictionary *options = [[NSMutableDictionary alloc] init];
     NSMutableDictionary *lrs = [[NSMutableDictionary alloc] init];
-    [lrs setValue:@"https://cloud.scorm.com/ScormEngineInterface/TCAPI/VK76L7KZME/sandbox" forKey:@"endpoint"];
-    [lrs setValue:@"Basic Vks3Nkw3S1pNRTo3WTFETmM1bWFwYk5wckg5aE1KQmNaNTFUbWFGSXNvY1hnUlFjREtn" forKey:@"auth"];
+    [lrs setValue:@"http://localhost:8080/ScormEngineInterface/TCAPI/" forKey:@"endpoint"];
+    [lrs setValue:@"Basic c3VwZXJ1c2VyOnN1cGVydXNlcg==" forKey:@"auth"];
+    [lrs setValue:@"1.0.0" forKey:@"version"];
     // just add one LRS for now
     [options setValue:[NSArray arrayWithObject:lrs] forKey:@"recordStore"];
-    [options setValue:@"0.95" forKey:@"version"];
     tincan = [[RSTinCanOfflineConnector alloc]initWithOptions:options];
 }
 
@@ -38,27 +38,51 @@
     [super tearDown];
 }
 
-//- (void)testGetStoredStatements
-//{
-//    
-//    NSMutableDictionary *statementOptions = [[NSMutableDictionary alloc] init];
-//    [statementOptions setValue:@"http://tincanapi.com/test" forKey:@"activityId"];
-//    [statementOptions setValue:[[TCVerb alloc] initWithId:@"http://adlnet.gov/expapi/verbs/experienced" withVerbDisplay:[[TCLocalizedValues alloc] initWithLanguageCode:@"en-US" withValue:@"experienced"]] forKey:@"verb"];
-//    [statementOptions setValue:@"http://adlnet.gov/expapi/activities/course" forKey:@"activityType"];
-//    TCStatement *statementToSend = [self createTestStatementWithOptions:statementOptions];
-//    
-//    //add a statement to the queue
-//    //[tincan enqueueStatement:statementToSend];
-//    //check to make sure there are some statements here
-//    NSArray *statementArray = [tincan getCachedStatements];
-//    NSLog(@"[statementArray count] : %d",[statementArray count]);
-//    STAssertNotNil(statementArray, @"statementArray should not be null");
-//    
-//    [tincan sendOldestFromQueueWithCompletionBlock:^{
-//        NSLog(@"statements flushed");
-//        [[TestSemaphor sharedInstance] lift:@"flushStatements"];
-//    }];
-//    [[TestSemaphor sharedInstance] waitForKey:@"flushStatements"];
-//}
+- (void)testGetStoredStatements
+{
+    
+    NSMutableDictionary *statementOptions = [[NSMutableDictionary alloc] init];
+    [statementOptions setValue:@"http://tincanapi.com/test" forKey:@"activityId"];
+    [statementOptions setValue:[[TCVerb alloc] initWithId:@"http://adlnet.gov/expapi/verbs/experienced" withVerbDisplay:[[TCLocalizedValues alloc] initWithLanguageCode:@"en-US" withValue:@"experienced"]] forKey:@"verb"];
+    [statementOptions setValue:@"http://adlnet.gov/expapi/activities/course" forKey:@"activityType"];
+    TCStatement *statementToSend = [self createTestStatementWithOptions:statementOptions];
+    
+    //add a statement to the queue
+    //[tincan enqueueStatement:statementToSend];
+    //check to make sure there are some statements here
+    NSArray *statementArray = [tincan getCachedStatements];
+    NSLog(@"[statementArray count] : %d",[statementArray count]);
+    STAssertNotNil(statementArray, @"statementArray should not be null");
+    
+    [tincan sendOldestFromQueueWithCompletionBlock:^{
+        NSLog(@"statements flushed");
+        [[TestSemaphor sharedInstance] lift:@"flushStatements"];
+    }];
+    [[TestSemaphor sharedInstance] waitForKey:@"flushStatements"];
+}
+
+- (TCStatement *)createTestStatementWithOptions:(NSDictionary *)options
+{
+    TCAgent *actor = [[TCAgent alloc] initWithName:@"Brian Rogers" withMbox:@"mailto:brian@tincanapi.com"];
+    
+    TCActivityDefinition *actDef = [[TCActivityDefinition alloc] initWithName:[[TCLocalizedValues alloc] initWithLanguageCode:@"en-US" withValue:@"http://tincanapi.com/test"]
+                                                              withDescription:[[TCLocalizedValues alloc] initWithLanguageCode:@"en-US" withValue:@"Description for test statement"]
+                                                                     withType:[options valueForKey:@"activityType"]
+                                                               withExtensions:nil
+                                                          withInteractionType:nil
+                                                  withCorrectResponsesPattern:nil
+                                                                  withChoices:nil
+                                                                    withScale:nil
+                                                                   withTarget:nil
+                                                                    withSteps:nil];
+    
+    TCActivity *activity = [[TCActivity alloc] initWithId:[options valueForKey:@"activityId"] withActivityDefinition:actDef];
+    
+    TCVerb *verb = [options valueForKey:@"verb"];
+    
+    TCStatement *statementToSend = [[TCStatement alloc] initWithId:[TCUtil GetUUID] withActor:actor withTarget:activity withVerb:verb];
+    
+    return statementToSend;
+}
 
 @end
