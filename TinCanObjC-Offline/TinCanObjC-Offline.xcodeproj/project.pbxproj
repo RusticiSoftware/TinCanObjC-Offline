@@ -39,26 +39,6 @@
 		D3062C6216FBFCC1004F746A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D3062C6016FBFCC1004F746A /* InfoPlist.strings */; };
 		D3062C6916FBFCE5004F746A /* TCLocalStorage.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = D3062C4216FBFB35004F746A /* TCLocalStorage.xcdatamodeld */; };
 		D3062C6C16FC02B2004F746A /* TestSemaphor.m in Sources */ = {isa = PBXBuildFile; fileRef = D3062C6B16FC02B2004F746A /* TestSemaphor.m */; };
-		D372AD2F1735FA8F00E92A3E /* RSTinCanConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = D372AD001735FA8F00E92A3E /* RSTinCanConnector.m */; };
-		D372AD301735FA8F00E92A3E /* TCActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = D372AD021735FA8F00E92A3E /* TCActivity.m */; };
-		D372AD311735FA8F00E92A3E /* TCActivityDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = D372AD041735FA8F00E92A3E /* TCActivityDefinition.m */; };
-		D372AD321735FA8F00E92A3E /* TCAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = D372AD061735FA8F00E92A3E /* TCAgent.m */; };
-		D372AD331735FA8F00E92A3E /* TCAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = D372AD081735FA8F00E92A3E /* TCAttachment.m */; };
-		D372AD341735FA8F00E92A3E /* TCAttachmentCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = D372AD0A1735FA8F00E92A3E /* TCAttachmentCollection.m */; };
-		D372AD351735FA8F00E92A3E /* TCContext.m in Sources */ = {isa = PBXBuildFile; fileRef = D372AD0C1735FA8F00E92A3E /* TCContext.m */; };
-		D372AD361735FA8F00E92A3E /* TCError.m in Sources */ = {isa = PBXBuildFile; fileRef = D372AD0E1735FA8F00E92A3E /* TCError.m */; };
-		D372AD371735FA8F00E92A3E /* TCLocalizedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = D372AD101735FA8F00E92A3E /* TCLocalizedValue.m */; };
-		D372AD381735FA8F00E92A3E /* TCLocalizedValues.m in Sources */ = {isa = PBXBuildFile; fileRef = D372AD121735FA8F00E92A3E /* TCLocalizedValues.m */; };
-		D372AD391735FA8F00E92A3E /* TCLRS.m in Sources */ = {isa = PBXBuildFile; fileRef = D372AD141735FA8F00E92A3E /* TCLRS.m */; };
-		D372AD3A1735FA8F00E92A3E /* TCQueryOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = D372AD161735FA8F00E92A3E /* TCQueryOptions.m */; };
-		D372AD3B1735FA8F00E92A3E /* TCState.m in Sources */ = {isa = PBXBuildFile; fileRef = D372AD181735FA8F00E92A3E /* TCState.m */; };
-		D372AD3C1735FA8F00E92A3E /* TCStatement.m in Sources */ = {isa = PBXBuildFile; fileRef = D372AD1A1735FA8F00E92A3E /* TCStatement.m */; };
-		D372AD3D1735FA8F00E92A3E /* TCStatementCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = D372AD1C1735FA8F00E92A3E /* TCStatementCollection.m */; };
-		D372AD3E1735FA8F00E92A3E /* TCUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = D372AD1E1735FA8F00E92A3E /* TCUtil.m */; };
-		D372AD3F1735FA8F00E92A3E /* TCVerb.m in Sources */ = {isa = PBXBuildFile; fileRef = D372AD201735FA8F00E92A3E /* TCVerb.m */; };
-		D372AD401735FA8F00E92A3E /* RSTCAPI-1-0-0-Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = D372AD291735FA8F00E92A3E /* RSTCAPI-1-0-0-Tests.m */; };
-		D372AD411735FA8F00E92A3E /* RSTCAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = D372AD2C1735FA8F00E92A3E /* RSTCAPITests.m */; };
-		D372AD421735FA8F00E92A3E /* TestSemaphor.m in Sources */ = {isa = PBXBuildFile; fileRef = D372AD2E1735FA8F00E92A3E /* TestSemaphor.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,55 +109,6 @@
 		D3062C6316FBFCC1004F746A /* TinCanObjC-OfflineResources-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TinCanObjC-OfflineResources-Prefix.pch"; sourceTree = "<group>"; };
 		D3062C6A16FC02B2004F746A /* TestSemaphor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestSemaphor.h; sourceTree = "<group>"; };
 		D3062C6B16FC02B2004F746A /* TestSemaphor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSemaphor.m; sourceTree = "<group>"; };
-		D372ACF91735FA8F00E92A3E /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		D372ACFA1735FA8F00E92A3E /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		D372ACFB1735FA8F00E92A3E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		D372ACFD1735FA8F00E92A3E /* RSTCAPI-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RSTCAPI-Prefix.pch"; sourceTree = "<group>"; };
-		D372ACFE1735FA8F00E92A3E /* RSTCAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSTCAPI.h; sourceTree = "<group>"; };
-		D372ACFF1735FA8F00E92A3E /* RSTinCanConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSTinCanConnector.h; sourceTree = "<group>"; };
-		D372AD001735FA8F00E92A3E /* RSTinCanConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSTinCanConnector.m; sourceTree = "<group>"; };
-		D372AD011735FA8F00E92A3E /* TCActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCActivity.h; sourceTree = "<group>"; };
-		D372AD021735FA8F00E92A3E /* TCActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCActivity.m; sourceTree = "<group>"; };
-		D372AD031735FA8F00E92A3E /* TCActivityDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCActivityDefinition.h; sourceTree = "<group>"; };
-		D372AD041735FA8F00E92A3E /* TCActivityDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCActivityDefinition.m; sourceTree = "<group>"; };
-		D372AD051735FA8F00E92A3E /* TCAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCAgent.h; sourceTree = "<group>"; };
-		D372AD061735FA8F00E92A3E /* TCAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCAgent.m; sourceTree = "<group>"; };
-		D372AD071735FA8F00E92A3E /* TCAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCAttachment.h; sourceTree = "<group>"; };
-		D372AD081735FA8F00E92A3E /* TCAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCAttachment.m; sourceTree = "<group>"; };
-		D372AD091735FA8F00E92A3E /* TCAttachmentCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCAttachmentCollection.h; sourceTree = "<group>"; };
-		D372AD0A1735FA8F00E92A3E /* TCAttachmentCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCAttachmentCollection.m; sourceTree = "<group>"; };
-		D372AD0B1735FA8F00E92A3E /* TCContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCContext.h; sourceTree = "<group>"; };
-		D372AD0C1735FA8F00E92A3E /* TCContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCContext.m; sourceTree = "<group>"; };
-		D372AD0D1735FA8F00E92A3E /* TCError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCError.h; sourceTree = "<group>"; };
-		D372AD0E1735FA8F00E92A3E /* TCError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCError.m; sourceTree = "<group>"; };
-		D372AD0F1735FA8F00E92A3E /* TCLocalizedValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCLocalizedValue.h; sourceTree = "<group>"; };
-		D372AD101735FA8F00E92A3E /* TCLocalizedValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCLocalizedValue.m; sourceTree = "<group>"; };
-		D372AD111735FA8F00E92A3E /* TCLocalizedValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCLocalizedValues.h; sourceTree = "<group>"; };
-		D372AD121735FA8F00E92A3E /* TCLocalizedValues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCLocalizedValues.m; sourceTree = "<group>"; };
-		D372AD131735FA8F00E92A3E /* TCLRS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCLRS.h; sourceTree = "<group>"; };
-		D372AD141735FA8F00E92A3E /* TCLRS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCLRS.m; sourceTree = "<group>"; };
-		D372AD151735FA8F00E92A3E /* TCQueryOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCQueryOptions.h; sourceTree = "<group>"; };
-		D372AD161735FA8F00E92A3E /* TCQueryOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCQueryOptions.m; sourceTree = "<group>"; };
-		D372AD171735FA8F00E92A3E /* TCState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCState.h; sourceTree = "<group>"; };
-		D372AD181735FA8F00E92A3E /* TCState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCState.m; sourceTree = "<group>"; };
-		D372AD191735FA8F00E92A3E /* TCStatement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCStatement.h; sourceTree = "<group>"; };
-		D372AD1A1735FA8F00E92A3E /* TCStatement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCStatement.m; sourceTree = "<group>"; };
-		D372AD1B1735FA8F00E92A3E /* TCStatementCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCStatementCollection.h; sourceTree = "<group>"; };
-		D372AD1C1735FA8F00E92A3E /* TCStatementCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCStatementCollection.m; sourceTree = "<group>"; };
-		D372AD1D1735FA8F00E92A3E /* TCUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCUtil.h; sourceTree = "<group>"; };
-		D372AD1E1735FA8F00E92A3E /* TCUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCUtil.m; sourceTree = "<group>"; };
-		D372AD1F1735FA8F00E92A3E /* TCVerb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCVerb.h; sourceTree = "<group>"; };
-		D372AD201735FA8F00E92A3E /* TCVerb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCVerb.m; sourceTree = "<group>"; };
-		D372AD211735FA8F00E92A3E /* RSTCAPI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = RSTCAPI.xcodeproj; sourceTree = "<group>"; };
-		D372AD251735FA8F00E92A3E /* blue-book.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blue-book.png"; sourceTree = "<group>"; };
-		D372AD271735FA8F00E92A3E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D372AD281735FA8F00E92A3E /* RSTCAPI-1-0-0-Tests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RSTCAPI-1-0-0-Tests.h"; sourceTree = "<group>"; };
-		D372AD291735FA8F00E92A3E /* RSTCAPI-1-0-0-Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RSTCAPI-1-0-0-Tests.m"; sourceTree = "<group>"; };
-		D372AD2A1735FA8F00E92A3E /* RSTCAPITests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "RSTCAPITests-Info.plist"; sourceTree = "<group>"; };
-		D372AD2B1735FA8F00E92A3E /* RSTCAPITests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSTCAPITests.h; sourceTree = "<group>"; };
-		D372AD2C1735FA8F00E92A3E /* RSTCAPITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSTCAPITests.m; sourceTree = "<group>"; };
-		D372AD2D1735FA8F00E92A3E /* TestSemaphor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestSemaphor.h; sourceTree = "<group>"; };
-		D372AD2E1735FA8F00E92A3E /* TestSemaphor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSemaphor.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -296,7 +227,6 @@
 		D3062BA616FBFA3B004F746A /* external */ = {
 			isa = PBXGroup;
 			children = (
-				D372ACF81735FA8F00E92A3E /* TinCanObjC */,
 			);
 			name = external;
 			sourceTree = "<group>";
@@ -327,84 +257,6 @@
 				D3062C6316FBFCC1004F746A /* TinCanObjC-OfflineResources-Prefix.pch */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		D372ACF81735FA8F00E92A3E /* TinCanObjC */ = {
-			isa = PBXGroup;
-			children = (
-				D372ACF91735FA8F00E92A3E /* .gitignore */,
-				D372ACFA1735FA8F00E92A3E /* LICENSE */,
-				D372ACFB1735FA8F00E92A3E /* README.md */,
-				D372ACFC1735FA8F00E92A3E /* RSTCAPI */,
-				D372AD211735FA8F00E92A3E /* RSTCAPI.xcodeproj */,
-				D372AD241735FA8F00E92A3E /* RSTCAPITests */,
-			);
-			name = TinCanObjC;
-			path = ../TinCanObjC;
-			sourceTree = "<group>";
-		};
-		D372ACFC1735FA8F00E92A3E /* RSTCAPI */ = {
-			isa = PBXGroup;
-			children = (
-				D372ACFD1735FA8F00E92A3E /* RSTCAPI-Prefix.pch */,
-				D372ACFE1735FA8F00E92A3E /* RSTCAPI.h */,
-				D372ACFF1735FA8F00E92A3E /* RSTinCanConnector.h */,
-				D372AD001735FA8F00E92A3E /* RSTinCanConnector.m */,
-				D372AD011735FA8F00E92A3E /* TCActivity.h */,
-				D372AD021735FA8F00E92A3E /* TCActivity.m */,
-				D372AD031735FA8F00E92A3E /* TCActivityDefinition.h */,
-				D372AD041735FA8F00E92A3E /* TCActivityDefinition.m */,
-				D372AD051735FA8F00E92A3E /* TCAgent.h */,
-				D372AD061735FA8F00E92A3E /* TCAgent.m */,
-				D372AD071735FA8F00E92A3E /* TCAttachment.h */,
-				D372AD081735FA8F00E92A3E /* TCAttachment.m */,
-				D372AD091735FA8F00E92A3E /* TCAttachmentCollection.h */,
-				D372AD0A1735FA8F00E92A3E /* TCAttachmentCollection.m */,
-				D372AD0B1735FA8F00E92A3E /* TCContext.h */,
-				D372AD0C1735FA8F00E92A3E /* TCContext.m */,
-				D372AD0D1735FA8F00E92A3E /* TCError.h */,
-				D372AD0E1735FA8F00E92A3E /* TCError.m */,
-				D372AD0F1735FA8F00E92A3E /* TCLocalizedValue.h */,
-				D372AD101735FA8F00E92A3E /* TCLocalizedValue.m */,
-				D372AD111735FA8F00E92A3E /* TCLocalizedValues.h */,
-				D372AD121735FA8F00E92A3E /* TCLocalizedValues.m */,
-				D372AD131735FA8F00E92A3E /* TCLRS.h */,
-				D372AD141735FA8F00E92A3E /* TCLRS.m */,
-				D372AD151735FA8F00E92A3E /* TCQueryOptions.h */,
-				D372AD161735FA8F00E92A3E /* TCQueryOptions.m */,
-				D372AD171735FA8F00E92A3E /* TCState.h */,
-				D372AD181735FA8F00E92A3E /* TCState.m */,
-				D372AD191735FA8F00E92A3E /* TCStatement.h */,
-				D372AD1A1735FA8F00E92A3E /* TCStatement.m */,
-				D372AD1B1735FA8F00E92A3E /* TCStatementCollection.h */,
-				D372AD1C1735FA8F00E92A3E /* TCStatementCollection.m */,
-				D372AD1D1735FA8F00E92A3E /* TCUtil.h */,
-				D372AD1E1735FA8F00E92A3E /* TCUtil.m */,
-				D372AD1F1735FA8F00E92A3E /* TCVerb.h */,
-				D372AD201735FA8F00E92A3E /* TCVerb.m */,
-			);
-			path = RSTCAPI;
-			sourceTree = "<group>";
-		};
-		D372AD221735FA8F00E92A3E /* Products */ = {
-			isa = PBXGroup;
-			name = Products;
-			sourceTree = "<group>";
-		};
-		D372AD241735FA8F00E92A3E /* RSTCAPITests */ = {
-			isa = PBXGroup;
-			children = (
-				D372AD251735FA8F00E92A3E /* blue-book.png */,
-				D372AD261735FA8F00E92A3E /* InfoPlist.strings */,
-				D372AD281735FA8F00E92A3E /* RSTCAPI-1-0-0-Tests.h */,
-				D372AD291735FA8F00E92A3E /* RSTCAPI-1-0-0-Tests.m */,
-				D372AD2A1735FA8F00E92A3E /* RSTCAPITests-Info.plist */,
-				D372AD2B1735FA8F00E92A3E /* RSTCAPITests.h */,
-				D372AD2C1735FA8F00E92A3E /* RSTCAPITests.m */,
-				D372AD2D1735FA8F00E92A3E /* TestSemaphor.h */,
-				D372AD2E1735FA8F00E92A3E /* TestSemaphor.m */,
-			);
-			path = RSTCAPITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -482,12 +334,6 @@
 			mainGroup = D3062B7216FBFA2D004F746A;
 			productRefGroup = D3062B7C16FBFA2D004F746A /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = D372AD221735FA8F00E92A3E /* Products */;
-					ProjectRef = D372AD211735FA8F00E92A3E /* RSTCAPI.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				D3062B7A16FBFA2D004F746A /* TinCanObjC-Offline */,
@@ -545,26 +391,6 @@
 				D3062C4D16FBFB35004F746A /* RSTinCanOfflineConnector.m in Sources */,
 				D3062C4E16FBFB35004F746A /* TCOfflineStatementCollection.m in Sources */,
 				D3062C4F16FBFB35004F746A /* TCOfflineDataManager.m in Sources */,
-				D372AD2F1735FA8F00E92A3E /* RSTinCanConnector.m in Sources */,
-				D372AD301735FA8F00E92A3E /* TCActivity.m in Sources */,
-				D372AD311735FA8F00E92A3E /* TCActivityDefinition.m in Sources */,
-				D372AD321735FA8F00E92A3E /* TCAgent.m in Sources */,
-				D372AD331735FA8F00E92A3E /* TCAttachment.m in Sources */,
-				D372AD341735FA8F00E92A3E /* TCAttachmentCollection.m in Sources */,
-				D372AD351735FA8F00E92A3E /* TCContext.m in Sources */,
-				D372AD361735FA8F00E92A3E /* TCError.m in Sources */,
-				D372AD371735FA8F00E92A3E /* TCLocalizedValue.m in Sources */,
-				D372AD381735FA8F00E92A3E /* TCLocalizedValues.m in Sources */,
-				D372AD391735FA8F00E92A3E /* TCLRS.m in Sources */,
-				D372AD3A1735FA8F00E92A3E /* TCQueryOptions.m in Sources */,
-				D372AD3B1735FA8F00E92A3E /* TCState.m in Sources */,
-				D372AD3C1735FA8F00E92A3E /* TCStatement.m in Sources */,
-				D372AD3D1735FA8F00E92A3E /* TCStatementCollection.m in Sources */,
-				D372AD3E1735FA8F00E92A3E /* TCUtil.m in Sources */,
-				D372AD3F1735FA8F00E92A3E /* TCVerb.m in Sources */,
-				D372AD401735FA8F00E92A3E /* RSTCAPI-1-0-0-Tests.m in Sources */,
-				D372AD411735FA8F00E92A3E /* RSTCAPITests.m in Sources */,
-				D372AD421735FA8F00E92A3E /* TestSemaphor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -625,14 +451,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				D3062C6116FBFCC1004F746A /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		D372AD261735FA8F00E92A3E /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D372AD271735FA8F00E92A3E /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
