@@ -25,9 +25,9 @@ NSString * const DataManagerDidSaveFailedNotification = @"DataManagerDidSaveFail
 @synthesize storePath = _storePath;
 @synthesize storeURL = _storeURL;
 
-NSString * const kDataManagerBundleName = @"TinCanSDKResources";
-NSString * const kDataManagerModelName = @"RSTCAPI";
-NSString * const kDataManagerSQLiteName = @"TinCanSDK.sqlite";
+NSString * const kDataManagerBundleName = @"TinCanObjC-OfflineResources";
+NSString * const kDataManagerModelName = @"TCLocalStorage";
+NSString * const kDataManagerSQLiteName = @"TinCanObjC-LocalStorage.sqlite";
 
 + (TCOfflineDataManager*)sharedInstance {
 	static dispatch_once_t pred;
@@ -54,11 +54,11 @@ NSString * const kDataManagerSQLiteName = @"TinCanSDK.sqlite";
     NSLog(@"mainBundlePath %@", mainBundlePath);
     NSString* frameworkBundlePath;
     
-    if([[mainBundlePath lastPathComponent] isEqualToString:@"RSTCAPITests.octest"])
+    if([[mainBundlePath lastPathComponent] isEqualToString:@"TinCanObjC-OfflineTests.octest"])
     {
-        frameworkBundlePath = [[mainBundlePath stringByDeletingLastPathComponent] stringByAppendingPathComponent:@"TinCanSDKResources.bundle"];
+        frameworkBundlePath = mainBundlePath;
     }else{
-        frameworkBundlePath = [mainBundlePath stringByAppendingPathComponent:@"TinCanSDKResources.bundle"];        
+        frameworkBundlePath = [mainBundlePath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.bundle",kDataManagerBundleName]];
     }
    
     NSLog(@"frameworkBundlePath %@", frameworkBundlePath);    

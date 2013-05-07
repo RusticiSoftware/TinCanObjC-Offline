@@ -38,7 +38,7 @@
     [super tearDown];
 }
 
-- (void)testGetStoredStatements
+- (void)testOfflineStatements
 {
     
     NSMutableDictionary *statementOptions = [[NSMutableDictionary alloc] init];
@@ -48,13 +48,17 @@
     TCStatement *statementToSend = [self createTestStatementWithOptions:statementOptions];
     
     //add a statement to the queue
-    //[tincan enqueueStatement:statementToSend];
+    [tincan enqueueStatement:statementToSend withCompletionBlock:^{
+        NSLog(@"statement enqued");
+    }withErrorBlock:^(NSError *error){
+        NSLog(@"error : %@", [error userInfo]);
+    }];
     //check to make sure there are some statements here
     NSArray *statementArray = [tincan getCachedStatements];
     NSLog(@"[statementArray count] : %d",[statementArray count]);
     STAssertNotNil(statementArray, @"statementArray should not be null");
     
-    [tincan sendOldestFromQueueWithCompletionBlock:^{
+    [tincan sendOldestStatementFromQueueWithCompletionBlock:^{
         NSLog(@"statements flushed");
         [[TestSemaphor sharedInstance] lift:@"flushStatements"];
     }];
@@ -83,6 +87,36 @@
     TCStatement *statementToSend = [[TCStatement alloc] initWithId:[TCUtil GetUUID] withActor:actor withTarget:activity withVerb:verb];
     
     return statementToSend;
+}
+
+- (void) testOfflineState
+{
+    TCAgent *actor = [[TCAgent alloc] initWithName:@"Brian Rogers" withMbox:@"mailto:brian@tincanapi.com"];
+    
+    NSMutableDictionary *stateContents = [[NSMutableDictionary alloc] init];
+    [stateContents setValue:@"page 1" forKey:@"bookmark"];
+    
+    NSString *stateId = [TCUtil GetUUID];
+    
+    // put some state
+    [tincan setStateWithValue:[stateContents copy] withStateId:stateId withActivityId:[TCUtil encodeURL:@"http://tincanapi.com/test"] withAgent:actor withRegistration:nil withOptions:nil withCompletionBlock:^{
+        [[TestSemaphor sharedInstance] lift:@"saveState"];
+    }withErrorBlock:^(NSError *error){
+        [[TestSemaphor sharedInstance] lift:@"saveState"];
+    }];
+    [[TestSemaphor sharedInstance] waitForKey:@"saveState"];
+}
+
+- (void) testSendLocalState
+{
+    [tincan sendLocalStateToServerWithCompletionBlock:^{
+        NSLog(@"sent all or 50 records");
+        [[TestSemaphor sharedInstance] lift:@"sendState"];
+    }withErrorBlock:^(NSError *error){
+        NSLog(@"error : %@", [error userInfo]);
+        [[TestSemaphor sharedInstance] lift:@"sendState"];
+    }];
+    [[TestSemaphor sharedInstance] waitForKey:@"sendState"];
 }
 
 @end

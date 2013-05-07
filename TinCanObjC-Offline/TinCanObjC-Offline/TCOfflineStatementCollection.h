@@ -16,7 +16,7 @@
 
 - (id) init;
 
-- (void) addStatement:(TCStatement *)statement;
+- (void) addStatement:(TCStatement *)statement withCompletionBlock:(void(^)())completionBlock withErrorBlock:(void(^)(NSError *))errorBlock;
 
 - (NSString *)JSONString;
 

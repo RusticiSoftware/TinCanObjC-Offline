@@ -27,7 +27,7 @@
     return self;
 }
 
-- (void) addStatement:(TCStatement *)statement
+- (void) addStatement:(TCStatement *)statement withCompletionBlock:(void(^)())completionBlock withErrorBlock:(void(^)(NSError *))errorBlock
 {
     [_statementArray addObject:[statement dictionary]];
     _managedObjectContext = [TCOfflineDataManager sharedInstance].mainObjectContext;
@@ -39,9 +39,14 @@
     [newStatement setQuerystring:@""];
     [newStatement setStatementId:statement.statementId];
     
+    NSLog(@"saving to coredata");
     NSError *error;
     if (![_managedObjectContext save:&error]) {
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        errorBlock(error);
+    }else{
+        NSLog(@"statement added to localstorage");
+        completionBlock();
     }
 }
 
@@ -110,6 +115,11 @@
     return fetchResults;
 }
 
+- (void) sendUnsentStatements:(int)limit withCompletionBlock:(void(^)())completionBlock withErrorBlock(void(^)(NSError *))errorBlock
+{
+    
+}
+
 - (void) markStatementPosted:(TCStatement *)statementPosted
 {
     //update statement row with postedDate
@@ -126,8 +136,8 @@
         NSLog(@"error marking statement posted : %@", [error userInfo]);
     }
 
-    LocalStatements *statementToUpdate = [fetchedObjects objectAtIndex:0];
-    [statementToUpdate setPostedDate:[NSDate date]];
+    LocalStatements *statementToDelete = [fetchedObjects objectAtIndex:0];
+    [_managedObjectContext deleteObject:statementToDelete];
     
     if (![_managedObjectContext save:&error]) {
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);

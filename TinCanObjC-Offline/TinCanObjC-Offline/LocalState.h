@@ -14,8 +14,10 @@
 
 @property (nonatomic, retain) NSString * stateId;
 @property (nonatomic, retain) NSString * stateContents;
-@property (nonatomic) NSTimeInterval createDate;
-@property (nonatomic) NSTimeInterval postDate;
+@property (nonatomic, retain) NSDate * createDate;
+@property (nonatomic, retain) NSDate * postDate;
 @property (nonatomic, retain) NSString * querystring;
+@property (nonatomic, retain) NSString * activityId;
+@property (nonatomic, retain) NSString * agentJson;
 
 @end
