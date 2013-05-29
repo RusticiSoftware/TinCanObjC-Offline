@@ -152,6 +152,7 @@
 		D3BADF8C175038D800AE748C /* TCStatementCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCStatementCollection.h; sourceTree = "<group>"; };
 		D3BADF8D175038D800AE748C /* TCUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCUtil.h; sourceTree = "<group>"; };
 		D3BADF8E175038D800AE748C /* TCVerb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCVerb.h; sourceTree = "<group>"; };
+		D3CAD4DF1755B0AF0010D8E2 /* docs.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = docs.markdown; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,7 +190,7 @@
 		D3062B7216FBFA2D004F746A = {
 			isa = PBXGroup;
 			children = (
-				D372AD751736004100E92A3E /* CoreData.framework */,
+				D3CAD4DF1755B0AF0010D8E2 /* docs.markdown */,
 				D3062BA616FBFA3B004F746A /* external */,
 				D3062B8016FBFA2D004F746A /* TinCanObjC-Offline */,
 				D3062B9516FBFA2D004F746A /* TinCanObjC-OfflineTests */,
@@ -212,6 +213,7 @@
 		D3062B7D16FBFA2D004F746A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D372AD751736004100E92A3E /* CoreData.framework */,
 				D3062B7E16FBFA2D004F746A /* Foundation.framework */,
 				D3062B8D16FBFA2D004F746A /* SenTestingKit.framework */,
 				D3062C5B16FBFCC0004F746A /* CoreFoundation.framework */,

@@ -30,9 +30,10 @@
 /**
  Calls saveStatement on each configured LRS, provide callback to make it asynchronous
  
- @method sendStatement
- @param {TinCan.Statement|Object} statement Send statement to LRS
- @param {Function} [callback] Callback function to execute on completion
+ @method sendStatementToServer
+ @param statementToSend statement Send statement to LRS
+ @param completionBlock code to execute on completion
+ @param errorBlock code to execute on error
  */
 - (void) sendStatementToServer:(TCStatement *)statementToSend withCompletionBlock:(void (^)())completionBlock withErrorBlock:(void(^)(TCError *))errorBlock;
 
