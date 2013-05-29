@@ -17,16 +17,15 @@
 @interface RSTinCanOfflineConnector : NSObject
 
 
+/**
+ Calls initWithOptions with a configured LRS
+ 
+ @method initWithOptions
+ @param {NSDictionary} options containing LRS endpoint information
+ */
 
 - (id) initWithOptions:(NSDictionary *)options;
 
-/**
- @method prepareStatement
- @param {Object|TinCan.Statement} Base statement properties or
- pre-created TinCan.Statement instance
- @return {TinCan.Statement}
- */
-- (void) prepareStatement:(TCStatement *)statementToPrepare withCompletionBlock:(void(^)(TCStatement *))completionBlock withErrorBlock:(void(^)(TCError *))errorBlock;
 
 /**
  Calls saveStatement on each configured LRS, provide callback to make it asynchronous
@@ -52,11 +51,11 @@
 /**
  Calls saveStatements with list of prepared statements
  
- @method sendStatements
+ @method sendStatementsToServer
  @param {Array} Array of statements to send
  @param {Function} Callback function to execute on completion
  */
-- (void) sendStatements:(TCStatementCollection *)statementArray withCompletionBlock:(void(^)())completionBlock withErrorBlock:(void(^)(TCError *))errorBlock;
+- (void) sendStatementsToServer:(TCStatementCollection *)statementArray withCompletionBlock:(void(^)())completionBlock withErrorBlock:(void(^)(TCError *))errorBlock;
 
 /**
  @method getStatements
@@ -148,6 +147,9 @@
 - (void) enqueueStatement:(TCStatement *)statement withCompletionBlock:(void(^)())completionBlock withErrorBlock:(void(^)(NSError *))errorBlock;
 - (NSArray *) getCachedStatements;
 - (void) sendOldestStatementFromQueueWithCompletionBlock:(void(^)())completionBlock;
+
+- (void) sendAllStatementsToServerWithCompletionBlock:(void(^)())completionBlock withErrorBlock:(void (^)(NSError *))errorBlock;
+
 - (void) sendLocalStateToServerWithCompletionBlock:(void(^)())completionBlock withErrorBlock:(void(^)(NSError *))errorBlock;
 
 @end

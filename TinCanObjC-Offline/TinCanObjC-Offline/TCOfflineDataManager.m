@@ -8,8 +8,8 @@
 
 #import "TCOfflineDataManager.h"
 
-NSString * const DataManagerDidSaveNotification = @"DataManagerDidSaveNotification";
-NSString * const DataManagerDidSaveFailedNotification = @"DataManagerDidSaveFailedNotification";
+NSString * const TCOfflineDataManagerDidSaveNotification = @"DataManagerDidSaveNotification";
+NSString * const TCOfflineDataManagerDidSaveFailedNotification = @"DataManagerDidSaveFailedNotification";
 
 @interface TCOfflineDataManager ()
 
@@ -25,9 +25,9 @@ NSString * const DataManagerDidSaveFailedNotification = @"DataManagerDidSaveFail
 @synthesize storePath = _storePath;
 @synthesize storeURL = _storeURL;
 
-NSString * const kDataManagerBundleName = @"TinCanObjC-OfflineResources";
-NSString * const kDataManagerModelName = @"TCLocalStorage";
-NSString * const kDataManagerSQLiteName = @"TinCanObjC-LocalStorage.sqlite";
+NSString * const kTCOfflineDataManagerBundleName = @"TinCanObjC-OfflineResources";
+NSString * const kTCOfflineDataManagerModelName = @"TCLocalStorage";
+NSString * const kTCOfflineDataManagerSQLiteName = @"TinCanObjC-LocalStorage.sqlite";
 
 + (TCOfflineDataManager*)sharedInstance {
 	static dispatch_once_t pred;
@@ -58,7 +58,7 @@ NSString * const kDataManagerSQLiteName = @"TinCanObjC-LocalStorage.sqlite";
     {
         frameworkBundlePath = mainBundlePath;
     }else{
-        frameworkBundlePath = [mainBundlePath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.bundle",kDataManagerBundleName]];
+        frameworkBundlePath = [mainBundlePath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.bundle",kTCOfflineDataManagerBundleName]];
     }
    
     NSLog(@"frameworkBundlePath %@", frameworkBundlePath);    
@@ -80,7 +80,7 @@ NSString * const kDataManagerSQLiteName = @"TinCanObjC-LocalStorage.sqlite";
 		return _persistentStoreCoordinator;
     
 	// Get the paths to the SQLite file
-	_storePath = [[self sharedDocumentsPath] stringByAppendingPathComponent:kDataManagerSQLiteName];
+	_storePath = [[self sharedDocumentsPath] stringByAppendingPathComponent:kTCOfflineDataManagerSQLiteName];
     
     NSLog(@"storePath : %@", _storePath);
     
@@ -134,12 +134,12 @@ NSString * const kDataManagerSQLiteName = @"TinCanObjC-LocalStorage.sqlite";
 	NSError *error = nil;
 	if (![self.mainObjectContext save:&error]) {
 		NSLog(@"Error while saving: %@\n%@", [error localizedDescription], [error userInfo]);
-		[[NSNotificationCenter defaultCenter] postNotificationName:DataManagerDidSaveFailedNotification
+		[[NSNotificationCenter defaultCenter] postNotificationName:TCOfflineDataManagerDidSaveFailedNotification
                                                             object:error];
 		return NO;
 	}
     
-	[[NSNotificationCenter defaultCenter] postNotificationName:DataManagerDidSaveNotification object:nil];
+	[[NSNotificationCenter defaultCenter] postNotificationName:TCOfflineDataManagerDidSaveNotification object:nil];
 	return YES;
 }
 

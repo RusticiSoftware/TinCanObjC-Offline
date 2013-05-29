@@ -28,19 +28,6 @@
     return self;
 }
 
-/**
- @method prepareStatement
- @param {Object|TinCan.Statement} Base statement properties or
- pre-created TinCan.Statement instance
- @return {TinCan.Statement}
- */
-//- (void) prepareStatement:(TCStatement *)statementToPrepare withCompletionBlock:(void(^)(TCStatement *))completionBlock withErrorBlock:(void(^)(TCError *))errorBlock
-//{
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        TCError *error = [[TCError alloc] initWithMessage:@"Not Implemented"];
-//        errorBlock(error);
-//    });
-//}
 
 /**
  Calls saveStatement on each configured LRS, provide callback to make it asynchronous
@@ -55,14 +42,15 @@
     
     [lrs saveStatement:statementToSend withOptions:nil
      withCompletionBlock:^(){
-         dispatch_async(dispatch_get_main_queue(), ^{
+         //dispatch_async(dispatch_get_main_queue(), ^{
+         NSLog(@"statement sent");
              completionBlock();
-         });
+         //});
      }
       withErrorBlock:^(TCError *error){
-          dispatch_async(dispatch_get_main_queue(), ^{
+          //dispatch_async(dispatch_get_main_queue(), ^{
               errorBlock(error);
-          });
+          //});
       }];
 }
 
@@ -100,22 +88,22 @@
  @param {Array} Array of statements to send
  @param {Function} Callback function to execute on completion
  */
-//- (void) sendStatements:(TCStatementCollection *)statementArray withCompletionBlock:(void(^)())completionBlock withErrorBlock:(void(^)(TCError *))errorBlock
-//{
-//    TCLRS *lrs = [[TCLRS alloc] initWithOptions:[_recordStore objectAtIndex:0]];
-//    
-//    [lrs saveStatements:statementArray withOptions:nil
-//    withCompletionBlock:^(){
-//       dispatch_async(dispatch_get_main_queue(), ^{
-//           completionBlock();
-//       });
-//    }
-//    withErrorBlock:^(TCError *error){
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            errorBlock(error);
-//        });
-//    }];
-//}
+- (void) sendStatementsToServer:(TCStatementCollection *)statementArray withCompletionBlock:(void(^)())completionBlock withErrorBlock:(void(^)(TCError *))errorBlock
+{
+    TCLRS *lrs = [[TCLRS alloc] initWithOptions:[_recordStore objectAtIndex:0]];
+    
+    [lrs saveStatements:statementArray withOptions:nil
+    withCompletionBlock:^(){
+       dispatch_async(dispatch_get_main_queue(), ^{
+           completionBlock();
+       });
+    }
+    withErrorBlock:^(TCError *error){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            errorBlock(error);
+        });
+    }];
+}
 
 /**
  @method getStatements
@@ -219,85 +207,6 @@
 
 }
 
-/**
- @method deleteState
- @param {String|null} key Key to remove from the state, or null to clear all
- @param {Object} [cfg] Configuration for request
- @param {Object} [cfg.agent] Agent used in query,
- defaults to 'actor' property if empty
- @param {Object} [cfg.activity] Activity used in query,
- defaults to 'activity' property if empty
- @param {Object} [cfg.registration] Registration used in query,
- defaults to 'registration' property if empty
- @param {Function} [cfg.callback] Function to run with state
- */
-//- (void) deleteStateWithStateId:(NSString *)stateId withActivityId:(NSString *)activityId withAgent:(TCAgent *)agent withRegistration:(NSString *)registration withOptions:(NSDictionary *)options withCompletionBlock:(void(^)())completionBlock withErrorBlock:(void(^)(TCError *))errorBlock
-//{
-//    TCLRS *lrs = [[TCLRS alloc] initWithOptions:[_recordStore objectAtIndex:0]];
-//    
-//    [lrs dropStateWithStateId:stateId withActivityId:activityId withAgent:agent withRegistration:registration withOptions:options
-//              withCompletionBlock:^()
-//                     {
-//                         dispatch_async(dispatch_get_main_queue(), ^{
-//                             completionBlock();
-//                         });
-//                     }
-//                   withErrorBlock:^(TCError *error){
-//                       dispatch_async(dispatch_get_main_queue(), ^{
-//                           errorBlock(error);
-//                       });
-//                   }];
-//}
-
-/**
- @method getActivityProfile
- @param {String} key Key to retrieve from the profile
- @param {Object} [cfg] Configuration for request
- @param {Object} [cfg.activity] Activity used in query,
- defaults to 'activity' property if empty
- @param {Function} [cfg.callback] Function to run with activity profile
- */
-//- (void) getActivityProfile:(NSString *)key withOptions:(NSDictionary *)options withCompletionBlock:(void(^)(NSDictionary *))completionBlock withErrorBlock:(void(^)(TCError *))errorBlock
-//{
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        TCError *error = [[TCError alloc] initWithMessage:@"Not Implemented"];
-//        errorBlock(error);
-//    });
-//}
-
-/**
- @method setActivityProfile
- @param {String} key Key to store into the activity profile
- @param {String|Object} val Value to store into the activity profile, objects will be stringified to JSON
- @param {Object} [cfg] Configuration for request
- @param {Object} [cfg.activity] Activity used in query,
- defaults to 'activity' property if empty
- @param {Function} [cfg.callback] Function to run with activity profile
- */
-//- (void) setActivityProfile:(NSString *)key withValue:(NSDictionary *)value withOptions:(NSDictionary *)options withCompletionBlock:(void(^)())completionBlock withErrorBlock:(void(^)(TCError *))errorBlock
-//{
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        TCError *error = [[TCError alloc] initWithMessage:@"Not Implemented"];
-//        errorBlock(error);
-//    });
-//}
-
-/**
- @method deleteActivityProfile
- @param {String|null} key Key to remove from the activity profile, or null to clear all
- @param {Object} [cfg] Configuration for request
- @param {Object} [cfg.activity] Activity used in query,
- defaults to 'activity' property if empty
- @param {Function} [cfg.callback] Function to run with activity profile
- */
-//- (void) deleteActivityProfile:(NSString *)key withOptions:(NSDictionary *)options withCompletionBlock:(void(^)())completionBlock withErrorBlock:(void(^)(TCError *))errorBlock
-//{
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        TCError *error = [[TCError alloc] initWithMessage:@"Not Implemented"];
-//        errorBlock(error);
-//    });
-//}
-
 - (void) enqueueStatement:(TCStatement *)statement withCompletionBlock:(void(^)())completionBlock withErrorBlock:(void(^)(NSError *))errorBlock
 {
     NSLog(@"enquing Statement %@", [statement JSONString]);
@@ -326,6 +235,41 @@
     {
         NSLog(@"error sendOldestFromQueueWithCompletionBlock : %@",[error userInfo]);
     }];
+}
+
+- (void) sendAllStatementsToServerWithCompletionBlock:(void(^)())completionBlock withErrorBlock:(void (^)(NSError *))errorBlock
+{
+    TCOfflineStatementCollection *statementQueue = [[TCOfflineStatementCollection alloc] init];
+    NSArray *unsentStatements = [statementQueue getUnsentStatements:500];
+    NSLog(@"sending %li statements to server", (unsigned long)unsentStatements.count);
+    TCStatementCollection *statementCollectionToSend = [[TCStatementCollection alloc] init];
+    NSMutableArray *statementsToDelete = [[NSMutableArray alloc] init];
+    
+    for (LocalStatements *localStatement in unsentStatements) {
+
+        TCStatement *statementToSend = [[TCStatement alloc] initWithJSON:[localStatement statementJson]];
+
+        [statementCollectionToSend addStatement:statementToSend];
+        [statementsToDelete addObject:statementToSend];
+
+    }
+    
+    [self sendStatementsToServer:statementCollectionToSend withCompletionBlock:^{
+        NSLog(@"statement batch sent");
+        for (TCStatement *statementSent in statementsToDelete) {
+            [statementQueue markStatementPosted:statementSent];
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completionBlock();
+        });
+    }withErrorBlock:^(TCError *error){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            errorBlock(error);
+        });
+    }];
+    
+    
+    
 }
 
 - (void) sendLocalStateToServerWithCompletionBlock:(void(^)())completionBlock withErrorBlock:(void(^)(NSError *))errorBlock

@@ -114,14 +114,38 @@
     //NSLog(@"getUnsentStatements - %@",fetchResults);
     return fetchResults;
 }
-
-- (void) sendUnsentStatements:(int)limit withCompletionBlock:(void(^)())completionBlock withErrorBlock(void(^)(NSError *))errorBlock
-{
-    
-}
+//
+//- (void) sendUnsentStatements:(int)limit withCompletionBlock:(void(^)())completionBlock withErrorBlock:(void(^)(NSError *))errorBlock
+//{
+//    NSArray *unsentStatements = [self getUnsentStatements:500];
+//    NSLog(@"sending %li statements to server", (unsigned long)unsentStatements.count);
+//    
+//    for (LocalStatements *localStatement in unsentStatements) {
+//        //NSLog(@"localStatement %@", localStatement);
+//        //NSLog(@"parsed statement %@", [localStatement statementJson]);
+//        TCStatement *statementToSend = [[TCStatement alloc] initWithJSON:[localStatement statementJson]];
+//        
+//        NSLog(@"sending statement to server");
+//        [self sendStatementToServer:statementToSend withCompletionBlock:^{
+//            NSLog(@"statement posted... deleting");
+//            [statementQueue markStatementPosted:statementToSend];
+//            
+//        }withErrorBlock:^(NSError *error)
+//         {
+//             NSLog(@"error sendAllStatementsToServerWithCompletionBlock : %@",[error userInfo]);
+//             dispatch_async(dispatch_get_main_queue(), ^{
+//                 errorBlock(error);
+//             });
+//         }];
+//    }
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        completionBlock();
+//    });
+//}
 
 - (void) markStatementPosted:(TCStatement *)statementPosted
 {
+    NSLog(@"deleting statementId %@", statementPosted.statementId);
     //update statement row with postedDate
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"LocalStatement" inManagedObjectContext:_managedObjectContext];
