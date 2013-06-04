@@ -1,9 +1,8 @@
 //
-//  RSTinCanConnector.h
-//  RSTCAPI
+//  RSTinCanOfflineConnector.h
 //
 //  Created by Brian Rogers on 2/28/13.
-//  Copyright (c) 2013 Brian Rogers. All rights reserved.
+//  Copyright (c) 2013 RusticiSoftware. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -14,139 +13,155 @@
 #import "TCQueryOptions.h"
 #import "TCAgent.h"
 
+/**
+ The front line connector for persisting tincan statements and state while offline and posting to your LRS when connected. This connector acts as a passthrough for the TinCanObjC library and wraps it with offline functionality.
+ 
+ */
 @interface RSTinCanOfflineConnector : NSObject
 
 
+/**
+ Calls initWithOptions with a configured LRS
+ 
+ @method initWithOptions
+ @param options containing LRS endpoint information
+ */
 
 - (id) initWithOptions:(NSDictionary *)options;
 
-/**
- @method prepareStatement
- @param {Object|TinCan.Statement} Base statement properties or
- pre-created TinCan.Statement instance
- @return {TinCan.Statement}
- */
-- (void) prepareStatement:(TCStatement *)statementToPrepare withCompletionBlock:(void(^)(TCStatement *))completionBlock withErrorBlock:(void(^)(TCError *))errorBlock;
 
 /**
  Calls saveStatement on each configured LRS, provide callback to make it asynchronous
  
- @method sendStatement
- @param {TinCan.Statement|Object} statement Send statement to LRS
- @param {Function} [callback] Callback function to execute on completion
+ @method sendStatementToServer
+ @param statementToSend statement Send statement to LRS
+ @param completionBlock code to execute on completion
+ @param errorBlock code to execute on error
  */
-- (void) sendStatement:(TCStatement *)statementToSend withCompletionBlock:(void (^)())completionBlock withErrorBlock:(void(^)(TCError *))errorBlock;
+- (void) sendStatementToServer:(TCStatement *)statementToSend withCompletionBlock:(void (^)())completionBlock withErrorBlock:(void(^)(TCError *))errorBlock;
 
 /**
  Calls retrieveStatement on each configured LRS until it gets a result, provide callback to make it asynchronous
  
  @method getStatement
- @param {String} statement Statement ID to get
- @param {Function} [callback] Callback function to execute on completion
- @return {TinCan.Statement} Retrieved statement from LRS
+ @param statementId Statement ID to get.
+ @param options Options to use for the call.
+ @param completionBlock Callback function to execute on completion.
+ @param errorBlock Callback function to execute on error.
  
- TODO: make TinCan track statements it has seen in a local cache to be returned easily
  */
 - (void) getStatementWithId:(NSString *)statementId withOptions:(NSDictionary *)options withCompletionBlock:(void(^)(TCStatement *))completionBlock withErrorBlock:(void(^)(TCError *))errorBlock;
 
 /**
  Calls saveStatements with list of prepared statements
  
- @method sendStatements
- @param {Array} Array of statements to send
- @param {Function} Callback function to execute on completion
+ @method sendStatementsToServer
+ @param statementArray Array of statements to send
+ @param completionBlock Callback function to execute on completion
+ @param errorBlock Callback function to execute on error
  */
-- (void) sendStatements:(TCStatementCollection *)statementArray withCompletionBlock:(void(^)())completionBlock withErrorBlock:(void(^)(TCError *))errorBlock;
+- (void) sendStatementsToServer:(TCStatementCollection *)statementArray withCompletionBlock:(void(^)())completionBlock withErrorBlock:(void(^)(TCError *))errorBlock;
 
 /**
- @method getStatements
- @param {Object} [cfg] Configuration for request
- @param {Boolean} [cfg.sendActor] Include default actor in query params
- @param {Boolean} [cfg.sendActivity] Include default activity in query params
- @param {Object} [cfg.params] Parameters used to filter
+ Gets the statements from the LRS
  
- @param {Function} [cfg.callback] Function to run at completion
- 
- TODO: support multiple LRSs and flag to use single
+ @method getStatementsFromServerWithOptions
+ @param options TCQueryOptions for this statement query
+ @param completionBlock Callback function to execute on completion
+ @param errorBlock Callback function to execute on error
  */
-- (void) getStatementsWithOptions:(TCQueryOptions *)options withCompletionBlock:(void(^)(NSArray *))completionBlock withErrorBlock:(void(^)(TCError *))errorBlock;
+- (void) getStatementsFromServerWithOptions:(TCQueryOptions *)options withCompletionBlock:(void(^)(NSArray *))completionBlock withErrorBlock:(void(^)(TCError *))errorBlock;
 
 /**
- @method getState
- @param {String} key Key to retrieve from the state
- @param {Object} [cfg] Configuration for request
- @param {Object} [cfg.agent] Agent used in query,
- defaults to 'actor' property if empty
- @param {Object} [cfg.activity] Activity used in query,
- defaults to 'activity' property if empty
- @param {Object} [cfg.registration] Registration used in query,
- defaults to 'registration' property if empty
- @param {Function} [cfg.callback] Function to run with state
+ Gets the state from the remote LRS filtered by provided stateId.
+ 
+ @method getStateFromServerWithStateId
+ @param stateId The stateId ot the state to retrieve from the LRS.
+ @param activityId The activityId to use for the query
+ @param agent The agent to use for the query
+ @param registration The registration to use for the query
+ @param options Additional options to pass to the query
+ @param completionBlock Callback function to execute on completion
+ @param errorBlock Callback function to execute on error
  */
-- (void) getStateWithStateId:(NSString *)stateId withActivityId:(NSString *)activityId withAgent:(TCAgent *)agent withRegistration:(NSString *)registration withOptions:(NSDictionary *)options withCompletionBlock:(void(^)(NSDictionary *))completionBlock withErrorBlock:(void(^)(TCError *))errorBlock;
+- (void) getStateFromServerWithStateId:(NSString *)stateId withActivityId:(NSString *)activityId withAgent:(TCAgent *)agent withRegistration:(NSString *)registration withOptions:(NSDictionary *)options withCompletionBlock:(void(^)(NSDictionary *))completionBlock withErrorBlock:(void(^)(TCError *))errorBlock;
+
+/**
+ @method getLocalStateForStateId
+ @param stateId The stateId to retrieve.
+ @param completionBlock The code to execute on completion.
+ */
+- (void) getLocalStateForStateId:(NSString *)stateId withCompletionBlock:(void(^)(NSDictionary *))completionBlock;
 
 /**
  @method setState
- @param {String} key Key to store into the state
- @param {String|Object} val Value to store into the state, objects will be stringified to JSON
- @param {Object} [cfg] Configuration for request
- @param {Object} [cfg.agent] Agent used in query,
- defaults to 'actor' property if empty
- @param {Object} [cfg.activity] Activity used in query,
- defaults to 'activity' property if empty
- @param {Object} [cfg.registration] Registration used in query,
- defaults to 'registration' property if empty
- @param {Function} [cfg.callback] Function to run with state
+ @param value The value/docment to save for this state entry
+ @param stateId The stateId to use for this entry
+ @param activityId The activityId to use for this entry
+ @param agent The TCAgent to use for this entry
+ @param registration The optional registration string for this entry
+ @param options The options dictionary for this request
+ @param completionBlock Callback function to execute on completion
+ @param errorBlock Callback function to execute on error
  */
 - (void) setStateWithValue:(NSDictionary *)value withStateId:(NSString *)stateId withActivityId:(NSString *)activityId withAgent:(TCAgent *)agent withRegistration:(NSString *)registration withOptions:(NSDictionary *)options withCompletionBlock:(void(^)())completionBlock withErrorBlock:(void(^)(TCError *))errorBlock;
 
 /**
  @method deleteState
- @param {String|null} key Key to remove from the state, or null to clear all
- @param {Object} [cfg] Configuration for request
- @param {Object} [cfg.agent] Agent used in query,
- defaults to 'actor' property if empty
- @param {Object} [cfg.activity] Activity used in query,
- defaults to 'activity' property if empty
- @param {Object} [cfg.registration] Registration used in query,
- defaults to 'registration' property if empty
- @param {Function} [cfg.callback] Function to run with state
+ @param stateId The stateId to use for this deletion
+ @param activityId The activityId to use for this deletion
+ @param agent The TCAgent to use for this deletion
+ @param registration The optional registration string for this deletion
+ @param options The options dictionary for this deletion
+ @param completionBlock Callback function to execute on completion
+ @param errorBlock Callback function to execute on error
  */
 - (void) deleteStateWithStateId:(NSString *)stateId withActivityId:(NSString *)activityId withAgent:(TCAgent *)agent withRegistration:(NSString *)registration withOptions:(NSDictionary *)options withCompletionBlock:(void(^)())completionBlock withErrorBlock:(void(^)(TCError *))errorBlock;
 
-/**
- @method getActivityProfile
- @param {String} key Key to retrieve from the profile
- @param {Object} [cfg] Configuration for request
- @param {Object} [cfg.activity] Activity used in query,
- defaults to 'activity' property if empty
- @param {Function} [cfg.callback] Function to run with activity profile
- */
-- (void) getActivityProfile:(NSString *)key withOptions:(NSDictionary *)options withCompletionBlock:(void(^)(NSDictionary *))completionBlock withErrorBlock:(void(^)(TCError *))errorBlock;
 
 /**
- @method setActivityProfile
- @param {String} key Key to store into the activity profile
- @param {String|Object} val Value to store into the activity profile, objects will be stringified to JSON
- @param {Object} [cfg] Configuration for request
- @param {Object} [cfg.activity] Activity used in query,
- defaults to 'activity' property if empty
- @param {Function} [cfg.callback] Function to run with activity profile
+ @method enqueueStatement
+ @param statement The TCStatement to enqueue
+ @param completionBlock Callback function to execute on completion
+ @param errorBlock Callback function to execute on error
  */
-- (void) setActivityProfile:(NSString *)key withValue:(NSDictionary *)value withOptions:(NSDictionary *)options withCompletionBlock:(void(^)())completionBlock withErrorBlock:(void(^)(TCError *))errorBlock;
+- (void) enqueueStatement:(TCStatement *)statement withCompletionBlock:(void(^)())completionBlock withErrorBlock:(void(^)(NSError *))errorBlock;
 
 /**
- @method deleteActivityProfile
- @param {String|null} key Key to remove from the activity profile, or null to clear all
- @param {Object} [cfg] Configuration for request
- @param {Object} [cfg.activity] Activity used in query,
- defaults to 'activity' property if empty
- @param {Function} [cfg.callback] Function to run with activity profile
+ 
+ @method getCachedStatements
+ @return statementArray NSArray containing OfflineStatement objects
  */
-- (void) deleteActivityProfile:(NSString *)key withOptions:(NSDictionary *)options withCompletionBlock:(void(^)())completionBlock withErrorBlock:(void(^)(TCError *))errorBlock;
-
-- (void) enqueueStatement:(TCStatement *)statement;
 - (NSArray *) getCachedStatements;
-- (void) sendOldestFromQueueWithCompletionBlock:(void(^)())completionBlock;
+
+/**
+ 
+ 
+ @method sendOldestStatementFromQueueWithCompletionBlock
+ @param completionBlock Callback function to execute on completion
+ */
+- (void) sendOldestStatementFromQueueWithCompletionBlock:(void(^)())completionBlock;
+
+/**
+ 
+ @method sendAllStatementsToServerWithCompletionBlock
+ @param completionBlock Callback function to execute on completion
+ @param errorBlock Callback function to execute on error
+ */
+- (void) sendAllStatementsToServerWithCompletionBlock:(void(^)())completionBlock withErrorBlock:(void (^)(NSError *))errorBlock;
+/**
+ 
+ @method sendLocalStateToServerWithCompletionBlock
+ @param completionBlock Callback function to execute on completion
+ @param errorBlock Callback function to execute on error
+ */
+- (void) sendLocalStateToServerWithCompletionBlock:(void(^)())completionBlock withErrorBlock:(void(^)(NSError *))errorBlock;
+
+/**
+
+ @method deleteSendStateRowsWithCompletionBlock
+ @param completionBlock Callback function to execute on completion
+ */
+- (void)deleteSendStateRowsWithCompletionBlock:(void(^)())completionBlock;
 
 @end

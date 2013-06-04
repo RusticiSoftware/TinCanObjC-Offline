@@ -23,11 +23,13 @@
     
     NSMutableDictionary *options = [[NSMutableDictionary alloc] init];
     NSMutableDictionary *lrs = [[NSMutableDictionary alloc] init];
-    [lrs setValue:@"https://cloud.scorm.com/ScormEngineInterface/TCAPI/VK76L7KZME/sandbox" forKey:@"endpoint"];
-    [lrs setValue:@"Basic Vks3Nkw3S1pNRTo3WTFETmM1bWFwYk5wckg5aE1KQmNaNTFUbWFGSXNvY1hnUlFjREtn" forKey:@"auth"];
+//    [lrs setValue:@"http://localhost:8080/ScormEngineInterface/TCAPI/" forKey:@"endpoint"];
+//    [lrs setValue:@"Basic c3VwZXJ1c2VyOnN1cGVydXNlcg==" forKey:@"auth"];
+    [lrs setValue:@"https://cloud.scorm.com/ScormEngineInterface/TCAPI/K5QNRA5J5J/sandbox" forKey:@"endpoint"];
+    [lrs setValue:@"Basic SzVRTlJBNUo1Sjp2UFhLejBkd3pZM0gxQnEzZFIzVTNJc01DejBUN2Z5T0tVdE5TR3lm" forKey:@"auth"];
+    [lrs setValue:@"1.0.0" forKey:@"version"];
     // just add one LRS for now
     [options setValue:[NSArray arrayWithObject:lrs] forKey:@"recordStore"];
-    [options setValue:@"0.95" forKey:@"version"];
     tincan = [[RSTinCanOfflineConnector alloc]initWithOptions:options];
 }
 
@@ -38,7 +40,7 @@
     [super tearDown];
 }
 
-//- (void)testGetStoredStatements
+//- (void)testOfflineStatements
 //{
 //    
 //    NSMutableDictionary *statementOptions = [[NSMutableDictionary alloc] init];
@@ -48,17 +50,119 @@
 //    TCStatement *statementToSend = [self createTestStatementWithOptions:statementOptions];
 //    
 //    //add a statement to the queue
-//    //[tincan enqueueStatement:statementToSend];
+//    [tincan enqueueStatement:statementToSend withCompletionBlock:^{
+//        NSLog(@"statement enqued");
+//    }withErrorBlock:^(NSError *error){
+//        NSLog(@"error : %@", [error userInfo]);
+//    }];
 //    //check to make sure there are some statements here
 //    NSArray *statementArray = [tincan getCachedStatements];
 //    NSLog(@"[statementArray count] : %d",[statementArray count]);
 //    STAssertNotNil(statementArray, @"statementArray should not be null");
 //    
-//    [tincan sendOldestFromQueueWithCompletionBlock:^{
+//    [tincan sendAllStatementsToServerWithCompletionBlock:^{
 //        NSLog(@"statements flushed");
 //        [[TestSemaphor sharedInstance] lift:@"flushStatements"];
+//    }withErrorBlock:^(NSError *error){
+//        STFail(@"error : %@", [error userInfo]);
+//        [[TestSemaphor sharedInstance] lift:@"flushStatements"];
 //    }];
+//    
 //    [[TestSemaphor sharedInstance] waitForKey:@"flushStatements"];
+//}
+//
+//- (TCStatement *)createTestStatementWithOptions:(NSDictionary *)options
+//{
+//    TCAgent *actor = [[TCAgent alloc] initWithName:@"Brian Rogers" withMbox:@"mailto:brian@tincanapi.com"];
+//    
+//    TCActivityDefinition *actDef = [[TCActivityDefinition alloc] initWithName:[[TCLocalizedValues alloc] initWithLanguageCode:@"en-US" withValue:@"http://tincanapi.com/test"]
+//                                                              withDescription:[[TCLocalizedValues alloc] initWithLanguageCode:@"en-US" withValue:@"Description for test statement"]
+//                                                                     withType:[options valueForKey:@"activityType"]
+//                                                               withExtensions:nil
+//                                                          withInteractionType:nil
+//                                                  withCorrectResponsesPattern:nil
+//                                                                  withChoices:nil
+//                                                                    withScale:nil
+//                                                                   withTarget:nil
+//                                                                    withSteps:nil];
+//    
+//    TCActivity *activity = [[TCActivity alloc] initWithId:[options valueForKey:@"activityId"] withActivityDefinition:actDef];
+//    
+//    TCVerb *verb = [options valueForKey:@"verb"];
+//    
+//    TCStatement *statementToSend = [[TCStatement alloc] initWithId:[TCUtil GetUUID] withActor:actor withTarget:activity withVerb:verb withResult:nil];
+//    
+//    return statementToSend;
+//}
+
+//- (void) testOfflineState
+//{
+//    TCAgent *actor = [[TCAgent alloc] initWithName:@"Brian Rogers" withMbox:@"mailto:brian@tincanapi.com"];
+//    
+//    NSMutableDictionary *stateContents = [[NSMutableDictionary alloc] init];
+//    [stateContents setValue:@"page 1" forKey:@"bookmark"];
+//    
+//    NSString *stateId = [TCUtil GetUUID];
+//    
+//    // put some state
+//    [tincan setStateWithValue:[stateContents copy] withStateId:stateId withActivityId:[TCUtil encodeURL:@"http://tincanapi.com/test"] withAgent:actor withRegistration:nil withOptions:nil withCompletionBlock:^{
+//        [[TestSemaphor sharedInstance] lift:@"saveState"];
+//    }withErrorBlock:^(NSError *error){
+//        [[TestSemaphor sharedInstance] lift:@"saveState"];
+//    }];
+//    [[TestSemaphor sharedInstance] waitForKey:@"saveState"];
+//    
+//    [tincan sendLocalStateToServerWithCompletionBlock:^{
+//        NSLog(@"sent all or 50 records");
+//        [[TestSemaphor sharedInstance] lift:@"sendState"];
+//    }withErrorBlock:^(NSError *error){
+//        NSLog(@"error : %@", [error userInfo]);
+//        [[TestSemaphor sharedInstance] lift:@"sendState"];
+//    }];
+//    [[TestSemaphor sharedInstance] waitForKey:@"sendState"];
+//    
+//    //26CE7504-C478-44FA-96AF-3332E561EE7B
+//    [tincan getStateFromServerWithStateId:@"26CE7504-C478-44FA-96AF-3332E561EE7B" withActivityId:[TCUtil encodeURL:@"http://tincanapi.com/test"] withAgent:actor withRegistration:nil withOptions:nil withCompletionBlock:^(NSDictionary *state){
+//        NSLog(@"got state from server : %@", state);
+//        [[TestSemaphor sharedInstance] lift:@"getState"];
+//    }withErrorBlock:^(TCError *error){
+//        
+//    }];
+//    [[TestSemaphor sharedInstance] waitForKey:@"getState"];
+//}
+
+- (void) testGetLocalState
+{
+    TCAgent *actor = [[TCAgent alloc] initWithName:@"Brian Rogers" withMbox:@"mailto:brian@tincanapi.com"];
+    
+    NSMutableDictionary *stateContents = [[NSMutableDictionary alloc] init];
+    [stateContents setValue:@"page 1" forKey:@"bookmark"];
+    
+    NSString *stateId = [TCUtil GetUUID];
+    
+    // put some state
+    [tincan setStateWithValue:[stateContents copy] withStateId:stateId withActivityId:[TCUtil encodeURL:@"http://tincanapi.com/test"] withAgent:actor withRegistration:nil withOptions:nil withCompletionBlock:^{
+        [[TestSemaphor sharedInstance] lift:@"saveState"];
+    }withErrorBlock:^(NSError *error){
+        [[TestSemaphor sharedInstance] lift:@"saveState"];
+    }];
+    [[TestSemaphor sharedInstance] waitForKey:@"saveState"];
+    
+    [tincan getLocalStateForStateId:stateId withCompletionBlock:^(NSDictionary *state) {
+        NSLog(@"%@", state);
+    }];
+}
+
+//- (void) testSendLocalState
+//{
+//    [tincan sendLocalStateToServerWithCompletionBlock:^{
+//        NSLog(@"sent all or 50 records");
+//        [[TestSemaphor sharedInstance] lift:@"sendState"];
+//    }withErrorBlock:^(NSError *error){
+//        NSLog(@"error : %@", [error userInfo]);
+//        [[TestSemaphor sharedInstance] lift:@"sendState"];
+//    }];
+//    [[TestSemaphor sharedInstance] waitForKey:@"sendState"];
 //}
 
 @end

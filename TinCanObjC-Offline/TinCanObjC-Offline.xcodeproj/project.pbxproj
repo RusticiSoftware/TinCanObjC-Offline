@@ -11,10 +11,12 @@
 			isa = PBXAggregateTarget;
 			buildConfigurationList = D3062C5116FBFC6E004F746A /* Build configuration list for PBXAggregateTarget "TinCanObjC-OfflineSDK" */;
 			buildPhases = (
+				D3BADF8F17503DED00AE748C /* ShellScript */,
+				D3E0658F175D69E80075A2CA /* ShellScript */,
 			);
 			dependencies = (
-				D3062C6816FBFCD0004F746A /* PBXTargetDependency */,
 				D3062C5516FBFC7A004F746A /* PBXTargetDependency */,
+				D3062C6816FBFCD0004F746A /* PBXTargetDependency */,
 			);
 			name = "TinCanObjC-OfflineSDK";
 			productName = "TinCanObjC-OfflineSDK";
@@ -24,24 +26,10 @@
 /* Begin PBXBuildFile section */
 		D3062B7F16FBFA2D004F746A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3062B7E16FBFA2D004F746A /* Foundation.framework */; };
 		D3062B8E16FBFA2D004F746A /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3062B8D16FBFA2D004F746A /* SenTestingKit.framework */; };
-		D3062B9016FBFA2D004F746A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3062B8F16FBFA2D004F746A /* UIKit.framework */; };
 		D3062B9116FBFA2D004F746A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3062B7E16FBFA2D004F746A /* Foundation.framework */; };
 		D3062B9416FBFA2D004F746A /* libTinCanObjC-Offline.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3062B7B16FBFA2D004F746A /* libTinCanObjC-Offline.a */; };
 		D3062B9A16FBFA2D004F746A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D3062B9816FBFA2D004F746A /* InfoPlist.strings */; };
 		D3062B9D16FBFA2D004F746A /* TinCanObjC_OfflineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D3062B9C16FBFA2D004F746A /* TinCanObjC_OfflineTests.m */; };
-		D3062C2C16FBFAD5004F746A /* RSTinCanConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = D3062C1316FBFAD5004F746A /* RSTinCanConnector.m */; };
-		D3062C2D16FBFAD5004F746A /* TCActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = D3062C1516FBFAD5004F746A /* TCActivity.m */; };
-		D3062C2E16FBFAD5004F746A /* TCActivityDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = D3062C1716FBFAD5004F746A /* TCActivityDefinition.m */; };
-		D3062C2F16FBFAD5004F746A /* TCAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = D3062C1916FBFAD5004F746A /* TCAgent.m */; };
-		D3062C3016FBFAD5004F746A /* TCError.m in Sources */ = {isa = PBXBuildFile; fileRef = D3062C1B16FBFAD5004F746A /* TCError.m */; };
-		D3062C3116FBFAD5004F746A /* TCLocalizedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = D3062C1D16FBFAD5004F746A /* TCLocalizedValue.m */; };
-		D3062C3216FBFAD5004F746A /* TCLRS.m in Sources */ = {isa = PBXBuildFile; fileRef = D3062C1F16FBFAD5004F746A /* TCLRS.m */; };
-		D3062C3316FBFAD5004F746A /* TCQueryOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = D3062C2116FBFAD5004F746A /* TCQueryOptions.m */; };
-		D3062C3416FBFAD5004F746A /* TCState.m in Sources */ = {isa = PBXBuildFile; fileRef = D3062C2316FBFAD5004F746A /* TCState.m */; };
-		D3062C3516FBFAD5004F746A /* TCStatement.m in Sources */ = {isa = PBXBuildFile; fileRef = D3062C2516FBFAD5004F746A /* TCStatement.m */; };
-		D3062C3616FBFAD5004F746A /* TCStatementCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = D3062C2716FBFAD5004F746A /* TCStatementCollection.m */; };
-		D3062C3716FBFAD5004F746A /* TCUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = D3062C2916FBFAD5004F746A /* TCUtil.m */; };
-		D3062C3816FBFAD5004F746A /* TCVerb.m in Sources */ = {isa = PBXBuildFile; fileRef = D3062C2B16FBFAD5004F746A /* TCVerb.m */; };
 		D3062C4A16FBFB35004F746A /* LocalState.m in Sources */ = {isa = PBXBuildFile; fileRef = D3062C3A16FBFB35004F746A /* LocalState.m */; };
 		D3062C4B16FBFB35004F746A /* LocalStatements.m in Sources */ = {isa = PBXBuildFile; fileRef = D3062C3C16FBFB35004F746A /* LocalStatements.m */; };
 		D3062C4C16FBFB35004F746A /* TCLocalStorage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D3062C4216FBFB35004F746A /* TCLocalStorage.xcdatamodeld */; };
@@ -52,6 +40,18 @@
 		D3062C6216FBFCC1004F746A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D3062C6016FBFCC1004F746A /* InfoPlist.strings */; };
 		D3062C6916FBFCE5004F746A /* TCLocalStorage.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = D3062C4216FBFB35004F746A /* TCLocalStorage.xcdatamodeld */; };
 		D3062C6C16FC02B2004F746A /* TestSemaphor.m in Sources */ = {isa = PBXBuildFile; fileRef = D3062C6B16FC02B2004F746A /* TestSemaphor.m */; };
+		D372AD761736004100E92A3E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D372AD751736004100E92A3E /* CoreData.framework */; };
+		D372AD791736062600E92A3E /* LocalState.h in Resources */ = {isa = PBXBuildFile; fileRef = D3062C3916FBFB35004F746A /* LocalState.h */; };
+		D372AD7A1736062600E92A3E /* LocalState.m in Resources */ = {isa = PBXBuildFile; fileRef = D3062C3A16FBFB35004F746A /* LocalState.m */; };
+		D372AD7B1736062600E92A3E /* LocalStatements.h in Resources */ = {isa = PBXBuildFile; fileRef = D3062C3B16FBFB35004F746A /* LocalStatements.h */; };
+		D372AD7C1736062600E92A3E /* LocalStatements.m in Resources */ = {isa = PBXBuildFile; fileRef = D3062C3C16FBFB35004F746A /* LocalStatements.m */; };
+		D372AD7D1736072E00E92A3E /* TCLocalStorage.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = D3062C4216FBFB35004F746A /* TCLocalStorage.xcdatamodeld */; };
+		D3BADF7A175038C900AE748C /* libRSTCAPI-Combined.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3BADF79175038C900AE748C /* libRSTCAPI-Combined.a */; };
+		D3BADF93175044CB00AE748C /* LocalState.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = D3062C3916FBFB35004F746A /* LocalState.h */; };
+		D3BADF94175044CB00AE748C /* LocalStatements.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = D3062C3B16FBFB35004F746A /* LocalStatements.h */; };
+		D3BADF95175044CB00AE748C /* RSTinCanOfflineConnector.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = D3062C4416FBFB35004F746A /* RSTinCanOfflineConnector.h */; };
+		D3BADF96175044CB00AE748C /* TCOfflineStatementCollection.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = D3062C4616FBFB35004F746A /* TCOfflineStatementCollection.h */; };
+		D3BADF97175044CB00AE748C /* TCOfflineDataManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = D3062C4816FBFB35004F746A /* TCOfflineDataManager.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +76,13 @@
 			remoteGlobalIDString = D3062C5916FBFCC0004F746A;
 			remoteInfo = "TinCanObjC-OfflineResources";
 		};
+		D372AD721736000A00E92A3E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D3062B7316FBFA2D004F746A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D3062C5916FBFCC0004F746A;
+			remoteInfo = "TinCanObjC-OfflineResources";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -85,6 +92,11 @@
 			dstPath = "include/${PRODUCT_NAME}";
 			dstSubfolderSpec = 16;
 			files = (
+				D3BADF93175044CB00AE748C /* LocalState.h in CopyFiles */,
+				D3BADF94175044CB00AE748C /* LocalStatements.h in CopyFiles */,
+				D3BADF95175044CB00AE748C /* RSTinCanOfflineConnector.h in CopyFiles */,
+				D3BADF96175044CB00AE748C /* TCOfflineStatementCollection.h in CopyFiles */,
+				D3BADF97175044CB00AE748C /* TCOfflineDataManager.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,39 +108,10 @@
 		D3062B8216FBFA2D004F746A /* TinCanObjC-Offline-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TinCanObjC-Offline-Prefix.pch"; sourceTree = "<group>"; };
 		D3062B8C16FBFA2D004F746A /* TinCanObjC-OfflineTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TinCanObjC-OfflineTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3062B8D16FBFA2D004F746A /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		D3062B8F16FBFA2D004F746A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		D3062B9716FBFA2D004F746A /* TinCanObjC-OfflineTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TinCanObjC-OfflineTests-Info.plist"; sourceTree = "<group>"; };
 		D3062B9916FBFA2D004F746A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D3062B9B16FBFA2D004F746A /* TinCanObjC_OfflineTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TinCanObjC_OfflineTests.h; sourceTree = "<group>"; };
 		D3062B9C16FBFA2D004F746A /* TinCanObjC_OfflineTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TinCanObjC_OfflineTests.m; sourceTree = "<group>"; };
-		D3062C1016FBFAD5004F746A /* RSTCAPI-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RSTCAPI-Prefix.pch"; sourceTree = "<group>"; };
-		D3062C1116FBFAD5004F746A /* RSTCAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSTCAPI.h; sourceTree = "<group>"; };
-		D3062C1216FBFAD5004F746A /* RSTinCanConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSTinCanConnector.h; sourceTree = "<group>"; };
-		D3062C1316FBFAD5004F746A /* RSTinCanConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSTinCanConnector.m; sourceTree = "<group>"; };
-		D3062C1416FBFAD5004F746A /* TCActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCActivity.h; sourceTree = "<group>"; };
-		D3062C1516FBFAD5004F746A /* TCActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCActivity.m; sourceTree = "<group>"; };
-		D3062C1616FBFAD5004F746A /* TCActivityDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCActivityDefinition.h; sourceTree = "<group>"; };
-		D3062C1716FBFAD5004F746A /* TCActivityDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCActivityDefinition.m; sourceTree = "<group>"; };
-		D3062C1816FBFAD5004F746A /* TCAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCAgent.h; sourceTree = "<group>"; };
-		D3062C1916FBFAD5004F746A /* TCAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCAgent.m; sourceTree = "<group>"; };
-		D3062C1A16FBFAD5004F746A /* TCError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCError.h; sourceTree = "<group>"; };
-		D3062C1B16FBFAD5004F746A /* TCError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCError.m; sourceTree = "<group>"; };
-		D3062C1C16FBFAD5004F746A /* TCLocalizedValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCLocalizedValue.h; sourceTree = "<group>"; };
-		D3062C1D16FBFAD5004F746A /* TCLocalizedValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCLocalizedValue.m; sourceTree = "<group>"; };
-		D3062C1E16FBFAD5004F746A /* TCLRS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCLRS.h; sourceTree = "<group>"; };
-		D3062C1F16FBFAD5004F746A /* TCLRS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCLRS.m; sourceTree = "<group>"; };
-		D3062C2016FBFAD5004F746A /* TCQueryOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCQueryOptions.h; sourceTree = "<group>"; };
-		D3062C2116FBFAD5004F746A /* TCQueryOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCQueryOptions.m; sourceTree = "<group>"; };
-		D3062C2216FBFAD5004F746A /* TCState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCState.h; sourceTree = "<group>"; };
-		D3062C2316FBFAD5004F746A /* TCState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCState.m; sourceTree = "<group>"; };
-		D3062C2416FBFAD5004F746A /* TCStatement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCStatement.h; sourceTree = "<group>"; };
-		D3062C2516FBFAD5004F746A /* TCStatement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCStatement.m; sourceTree = "<group>"; };
-		D3062C2616FBFAD5004F746A /* TCStatementCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCStatementCollection.h; sourceTree = "<group>"; };
-		D3062C2716FBFAD5004F746A /* TCStatementCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCStatementCollection.m; sourceTree = "<group>"; };
-		D3062C2816FBFAD5004F746A /* TCUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCUtil.h; sourceTree = "<group>"; };
-		D3062C2916FBFAD5004F746A /* TCUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCUtil.m; sourceTree = "<group>"; };
-		D3062C2A16FBFAD5004F746A /* TCVerb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCVerb.h; sourceTree = "<group>"; };
-		D3062C2B16FBFAD5004F746A /* TCVerb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCVerb.m; sourceTree = "<group>"; };
 		D3062C3916FBFB35004F746A /* LocalState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalState.h; sourceTree = "<group>"; };
 		D3062C3A16FBFB35004F746A /* LocalState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalState.m; sourceTree = "<group>"; };
 		D3062C3B16FBFB35004F746A /* LocalStatements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalStatements.h; sourceTree = "<group>"; };
@@ -150,6 +133,27 @@
 		D3062C6316FBFCC1004F746A /* TinCanObjC-OfflineResources-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TinCanObjC-OfflineResources-Prefix.pch"; sourceTree = "<group>"; };
 		D3062C6A16FC02B2004F746A /* TestSemaphor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestSemaphor.h; sourceTree = "<group>"; };
 		D3062C6B16FC02B2004F746A /* TestSemaphor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSemaphor.m; sourceTree = "<group>"; };
+		D372AD751736004100E92A3E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		D3BADF79175038C900AE748C /* libRSTCAPI-Combined.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libRSTCAPI-Combined.a"; sourceTree = "<group>"; };
+		D3BADF7D175038D700AE748C /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
+		D3BADF7E175038D700AE748C /* RSTCAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSTCAPI.h; sourceTree = "<group>"; };
+		D3BADF7F175038D700AE748C /* RSTinCanConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSTinCanConnector.h; sourceTree = "<group>"; };
+		D3BADF80175038D700AE748C /* TCActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCActivity.h; sourceTree = "<group>"; };
+		D3BADF81175038D700AE748C /* TCActivityDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCActivityDefinition.h; sourceTree = "<group>"; };
+		D3BADF82175038D700AE748C /* TCAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCAgent.h; sourceTree = "<group>"; };
+		D3BADF83175038D700AE748C /* TCAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCAttachment.h; sourceTree = "<group>"; };
+		D3BADF84175038D700AE748C /* TCAttachmentCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCAttachmentCollection.h; sourceTree = "<group>"; };
+		D3BADF85175038D800AE748C /* TCContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCContext.h; sourceTree = "<group>"; };
+		D3BADF86175038D800AE748C /* TCError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCError.h; sourceTree = "<group>"; };
+		D3BADF87175038D800AE748C /* TCLocalizedValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCLocalizedValues.h; sourceTree = "<group>"; };
+		D3BADF88175038D800AE748C /* TCLRS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCLRS.h; sourceTree = "<group>"; };
+		D3BADF89175038D800AE748C /* TCQueryOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCQueryOptions.h; sourceTree = "<group>"; };
+		D3BADF8A175038D800AE748C /* TCState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCState.h; sourceTree = "<group>"; };
+		D3BADF8B175038D800AE748C /* TCStatement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCStatement.h; sourceTree = "<group>"; };
+		D3BADF8C175038D800AE748C /* TCStatementCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCStatementCollection.h; sourceTree = "<group>"; };
+		D3BADF8D175038D800AE748C /* TCUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCUtil.h; sourceTree = "<group>"; };
+		D3BADF8E175038D800AE748C /* TCVerb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCVerb.h; sourceTree = "<group>"; };
+		D3CAD4DF1755B0AF0010D8E2 /* docs.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = docs.markdown; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +162,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3062B7F16FBFA2D004F746A /* Foundation.framework in Frameworks */,
+				D3BADF7A175038C900AE748C /* libRSTCAPI-Combined.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,8 +170,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D372AD761736004100E92A3E /* CoreData.framework in Frameworks */,
 				D3062B8E16FBFA2D004F746A /* SenTestingKit.framework in Frameworks */,
-				D3062B9016FBFA2D004F746A /* UIKit.framework in Frameworks */,
 				D3062B9116FBFA2D004F746A /* Foundation.framework in Frameworks */,
 				D3062B9416FBFA2D004F746A /* libTinCanObjC-Offline.a in Frameworks */,
 			);
@@ -186,6 +191,7 @@
 		D3062B7216FBFA2D004F746A = {
 			isa = PBXGroup;
 			children = (
+				D3CAD4DF1755B0AF0010D8E2 /* docs.markdown */,
 				D3062BA616FBFA3B004F746A /* external */,
 				D3062B8016FBFA2D004F746A /* TinCanObjC-Offline */,
 				D3062B9516FBFA2D004F746A /* TinCanObjC-OfflineTests */,
@@ -208,9 +214,9 @@
 		D3062B7D16FBFA2D004F746A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D372AD751736004100E92A3E /* CoreData.framework */,
 				D3062B7E16FBFA2D004F746A /* Foundation.framework */,
 				D3062B8D16FBFA2D004F746A /* SenTestingKit.framework */,
-				D3062B8F16FBFA2D004F746A /* UIKit.framework */,
 				D3062C5B16FBFCC0004F746A /* CoreFoundation.framework */,
 			);
 			name = Frameworks;
@@ -224,7 +230,6 @@
 				D3062C3B16FBFB35004F746A /* LocalStatements.h */,
 				D3062C3C16FBFB35004F746A /* LocalStatements.m */,
 				D3062C3D16FBFB35004F746A /* TinCanSDKResources */,
-				D3062C4216FBFB35004F746A /* TCLocalStorage.xcdatamodeld */,
 				D3062C4416FBFB35004F746A /* RSTinCanOfflineConnector.h */,
 				D3062C4516FBFB35004F746A /* RSTinCanOfflineConnector.m */,
 				D3062C4616FBFB35004F746A /* TCOfflineStatementCollection.h */,
@@ -268,45 +273,10 @@
 		D3062BA616FBFA3B004F746A /* external */ = {
 			isa = PBXGroup;
 			children = (
-				D3062C0F16FBFAD5004F746A /* RSTCAPI */,
+				D3BADF7B175038D700AE748C /* include */,
+				D3BADF79175038C900AE748C /* libRSTCAPI-Combined.a */,
 			);
 			name = external;
-			sourceTree = "<group>";
-		};
-		D3062C0F16FBFAD5004F746A /* RSTCAPI */ = {
-			isa = PBXGroup;
-			children = (
-				D3062C1016FBFAD5004F746A /* RSTCAPI-Prefix.pch */,
-				D3062C1116FBFAD5004F746A /* RSTCAPI.h */,
-				D3062C1216FBFAD5004F746A /* RSTinCanConnector.h */,
-				D3062C1316FBFAD5004F746A /* RSTinCanConnector.m */,
-				D3062C1416FBFAD5004F746A /* TCActivity.h */,
-				D3062C1516FBFAD5004F746A /* TCActivity.m */,
-				D3062C1616FBFAD5004F746A /* TCActivityDefinition.h */,
-				D3062C1716FBFAD5004F746A /* TCActivityDefinition.m */,
-				D3062C1816FBFAD5004F746A /* TCAgent.h */,
-				D3062C1916FBFAD5004F746A /* TCAgent.m */,
-				D3062C1A16FBFAD5004F746A /* TCError.h */,
-				D3062C1B16FBFAD5004F746A /* TCError.m */,
-				D3062C1C16FBFAD5004F746A /* TCLocalizedValue.h */,
-				D3062C1D16FBFAD5004F746A /* TCLocalizedValue.m */,
-				D3062C1E16FBFAD5004F746A /* TCLRS.h */,
-				D3062C1F16FBFAD5004F746A /* TCLRS.m */,
-				D3062C2016FBFAD5004F746A /* TCQueryOptions.h */,
-				D3062C2116FBFAD5004F746A /* TCQueryOptions.m */,
-				D3062C2216FBFAD5004F746A /* TCState.h */,
-				D3062C2316FBFAD5004F746A /* TCState.m */,
-				D3062C2416FBFAD5004F746A /* TCStatement.h */,
-				D3062C2516FBFAD5004F746A /* TCStatement.m */,
-				D3062C2616FBFAD5004F746A /* TCStatementCollection.h */,
-				D3062C2716FBFAD5004F746A /* TCStatementCollection.m */,
-				D3062C2816FBFAD5004F746A /* TCUtil.h */,
-				D3062C2916FBFAD5004F746A /* TCUtil.m */,
-				D3062C2A16FBFAD5004F746A /* TCVerb.h */,
-				D3062C2B16FBFAD5004F746A /* TCVerb.m */,
-			);
-			name = RSTCAPI;
-			path = ../TinCanObjC/RSTCAPI;
 			sourceTree = "<group>";
 		};
 		D3062C3D16FBFB35004F746A /* TinCanSDKResources */ = {
@@ -322,6 +292,7 @@
 		D3062C5D16FBFCC0004F746A /* TinCanObjC-OfflineResources */ = {
 			isa = PBXGroup;
 			children = (
+				D3062C4216FBFB35004F746A /* TCLocalStorage.xcdatamodeld */,
 				D3062C5E16FBFCC1004F746A /* Supporting Files */,
 			);
 			path = "TinCanObjC-OfflineResources";
@@ -335,6 +306,39 @@
 				D3062C6316FBFCC1004F746A /* TinCanObjC-OfflineResources-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D3BADF7B175038D700AE748C /* include */ = {
+			isa = PBXGroup;
+			children = (
+				D3BADF7C175038D700AE748C /* RSTCAPI */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		D3BADF7C175038D700AE748C /* RSTCAPI */ = {
+			isa = PBXGroup;
+			children = (
+				D3BADF7D175038D700AE748C /* Base64.h */,
+				D3BADF7E175038D700AE748C /* RSTCAPI.h */,
+				D3BADF7F175038D700AE748C /* RSTinCanConnector.h */,
+				D3BADF80175038D700AE748C /* TCActivity.h */,
+				D3BADF81175038D700AE748C /* TCActivityDefinition.h */,
+				D3BADF82175038D700AE748C /* TCAgent.h */,
+				D3BADF83175038D700AE748C /* TCAttachment.h */,
+				D3BADF84175038D700AE748C /* TCAttachmentCollection.h */,
+				D3BADF85175038D800AE748C /* TCContext.h */,
+				D3BADF86175038D800AE748C /* TCError.h */,
+				D3BADF87175038D800AE748C /* TCLocalizedValues.h */,
+				D3BADF88175038D800AE748C /* TCLRS.h */,
+				D3BADF89175038D800AE748C /* TCQueryOptions.h */,
+				D3BADF8A175038D800AE748C /* TCState.h */,
+				D3BADF8B175038D800AE748C /* TCStatement.h */,
+				D3BADF8C175038D800AE748C /* TCStatementCollection.h */,
+				D3BADF8D175038D800AE748C /* TCUtil.h */,
+				D3BADF8E175038D800AE748C /* TCVerb.h */,
+			);
+			path = RSTCAPI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -370,6 +374,7 @@
 			);
 			dependencies = (
 				D3062B9316FBFA2D004F746A /* PBXTargetDependency */,
+				D372AD731736000A00E92A3E /* PBXTargetDependency */,
 			);
 			name = "TinCanObjC-OfflineTests";
 			productName = "TinCanObjC-OfflineTests";
@@ -427,6 +432,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D372AD7D1736072E00E92A3E /* TCLocalStorage.xcdatamodeld in Resources */,
+				D372AD791736062600E92A3E /* LocalState.h in Resources */,
+				D372AD7A1736062600E92A3E /* LocalState.m in Resources */,
+				D372AD7B1736062600E92A3E /* LocalStatements.h in Resources */,
+				D372AD7C1736062600E92A3E /* LocalStatements.m in Resources */,
 				D3062B9A16FBFA2D004F746A /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -456,6 +466,32 @@
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
+		D3BADF8F17503DED00AE748C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "XCODEBUILD_PATH=/Applications/Xcode.app/Contents/Developer/usr/bin\nXCODEBUILD=$XCODEBUILD_PATH/xcodebuild\n\n$XCODEBUILD -project TinCanObjC-Offline.xcodeproj -target \"TinCanObjC-Offline\" -sdk \"iphoneos\" -configuration \"Release\" clean build\n\n$XCODEBUILD -project TinCanObjC-Offline.xcodeproj -target \"TinCanObjC-Offline\" -sdk \"iphonesimulator\" -configuration \"Release\" clean build\n\nlipo -create -output \"build/libTinCanObjC-Offline-Combined.a\" \"build/Release-iphoneos/libTinCanObjC-Offline.a\" \"build/Release-iphonesimulator/libTinCanObjC-Offline.a\"";
+		};
+		D3E0658F175D69E80075A2CA /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/appledoc --project-name \"TinCanObjC-Offline\" --project-company \"Rustici Software\" --company-id \"com.rusticisoftware\" --output \"~/Desktop/TinCanObjC-Offline-Docs\" --logformat xcode --keep-undocumented-objects --keep-undocumented-members --keep-intermediate-files --no-repeat-first-par --no-warn-invalid-crossref --ignore include --ignore \"*.m\" --ignore \"TinCanObjC_OfflineTests.h\" --ignore \"TCOfflineDataManager.h\" --ignore \"TestSemaphor.h\" --index-desc \"docs.markdown\" ./TinCanObjC-Offline";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -463,19 +499,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3062C2C16FBFAD5004F746A /* RSTinCanConnector.m in Sources */,
-				D3062C2D16FBFAD5004F746A /* TCActivity.m in Sources */,
-				D3062C2E16FBFAD5004F746A /* TCActivityDefinition.m in Sources */,
-				D3062C2F16FBFAD5004F746A /* TCAgent.m in Sources */,
-				D3062C3016FBFAD5004F746A /* TCError.m in Sources */,
-				D3062C3116FBFAD5004F746A /* TCLocalizedValue.m in Sources */,
-				D3062C3216FBFAD5004F746A /* TCLRS.m in Sources */,
-				D3062C3316FBFAD5004F746A /* TCQueryOptions.m in Sources */,
-				D3062C3416FBFAD5004F746A /* TCState.m in Sources */,
-				D3062C3516FBFAD5004F746A /* TCStatement.m in Sources */,
-				D3062C3616FBFAD5004F746A /* TCStatementCollection.m in Sources */,
-				D3062C3716FBFAD5004F746A /* TCUtil.m in Sources */,
-				D3062C3816FBFAD5004F746A /* TCVerb.m in Sources */,
 				D3062C4A16FBFB35004F746A /* LocalState.m in Sources */,
 				D3062C4B16FBFB35004F746A /* LocalStatements.m in Sources */,
 				D3062C4C16FBFB35004F746A /* TCLocalStorage.xcdatamodeld in Sources */,
@@ -518,6 +541,11 @@
 			isa = PBXTargetDependency;
 			target = D3062C5916FBFCC0004F746A /* TinCanObjC-OfflineResources */;
 			targetProxy = D3062C6716FBFCD0004F746A /* PBXContainerItemProxy */;
+		};
+		D372AD731736000A00E92A3E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D3062C5916FBFCC0004F746A /* TinCanObjC-OfflineResources */;
+			targetProxy = D372AD721736000A00E92A3E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -608,6 +636,10 @@
 				DSTROOT = /tmp/TinCanObjC_Offline.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TinCanObjC-Offline/TinCanObjC-Offline-Prefix.pch";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -620,6 +652,10 @@
 				DSTROOT = /tmp/TinCanObjC_Offline.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TinCanObjC-Offline/TinCanObjC-Offline-Prefix.pch";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -636,6 +672,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TinCanObjC-Offline/TinCanObjC-Offline-Prefix.pch";
 				INFOPLIST_FILE = "TinCanObjC-OfflineTests/TinCanObjC-OfflineTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -651,6 +691,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TinCanObjC-Offline/TinCanObjC-Offline-Prefix.pch";
 				INFOPLIST_FILE = "TinCanObjC-OfflineTests/TinCanObjC-OfflineTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -681,6 +725,10 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				INFOPLIST_FILE = "TinCanObjC-OfflineResources/TinCanObjC-OfflineResources-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -700,6 +748,10 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				INFOPLIST_FILE = "TinCanObjC-OfflineResources/TinCanObjC-OfflineResources-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -726,6 +778,7 @@
 				D3062BA216FBFA2D004F746A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D3062BA316FBFA2D004F746A /* Build configuration list for PBXNativeTarget "TinCanObjC-OfflineTests" */ = {
 			isa = XCConfigurationList;
@@ -734,6 +787,7 @@
 				D3062BA516FBFA2D004F746A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D3062C5116FBFC6E004F746A /* Build configuration list for PBXAggregateTarget "TinCanObjC-OfflineSDK" */ = {
 			isa = XCConfigurationList;
@@ -742,6 +796,7 @@
 				D3062C5316FBFC6E004F746A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D3062C6416FBFCC1004F746A /* Build configuration list for PBXNativeTarget "TinCanObjC-OfflineResources" */ = {
 			isa = XCConfigurationList;
@@ -750,6 +805,7 @@
 				D3062C6616FBFCC1004F746A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
@@ -760,7 +816,8 @@
 				D3062C4316FBFB35004F746A /* TCLocalStorage.xcdatamodel */,
 			);
 			currentVersion = D3062C4316FBFB35004F746A /* TCLocalStorage.xcdatamodel */;
-			path = TCLocalStorage.xcdatamodeld;
+			name = TCLocalStorage.xcdatamodeld;
+			path = "../TinCanObjC-Offline/TCLocalStorage.xcdatamodeld";
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
