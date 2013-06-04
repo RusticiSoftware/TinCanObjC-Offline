@@ -1,9 +1,8 @@
 //
 //  TCStatementCollection.m
-//  RSTCAPI
 //
 //  Created by Brian Rogers on 3/7/13.
-//  Copyright (c) 2013 Brian Rogers. All rights reserved.
+//  Copyright (c) 2013 Rustici Software. All rights reserved.
 //
 
 #import "TCOfflineStatementCollection.h"
@@ -27,7 +26,7 @@
     return self;
 }
 
-- (void) addStatement:(TCStatement *)statement
+- (void) addStatement:(TCStatement *)statement withCompletionBlock:(void(^)())completionBlock withErrorBlock:(void(^)(NSError *))errorBlock
 {
     [_statementArray addObject:[statement dictionary]];
     _managedObjectContext = [TCOfflineDataManager sharedInstance].mainObjectContext;
@@ -39,9 +38,14 @@
     [newStatement setQuerystring:@""];
     [newStatement setStatementId:statement.statementId];
     
+    NSLog(@"saving to coredata");
     NSError *error;
     if (![_managedObjectContext save:&error]) {
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        errorBlock(error);
+    }else{
+        NSLog(@"statement added to localstorage");
+        completionBlock();
     }
 }
 
@@ -109,9 +113,38 @@
     //NSLog(@"getUnsentStatements - %@",fetchResults);
     return fetchResults;
 }
+//
+//- (void) sendUnsentStatements:(int)limit withCompletionBlock:(void(^)())completionBlock withErrorBlock:(void(^)(NSError *))errorBlock
+//{
+//    NSArray *unsentStatements = [self getUnsentStatements:500];
+//    NSLog(@"sending %li statements to server", (unsigned long)unsentStatements.count);
+//    
+//    for (LocalStatements *localStatement in unsentStatements) {
+//        //NSLog(@"localStatement %@", localStatement);
+//        //NSLog(@"parsed statement %@", [localStatement statementJson]);
+//        TCStatement *statementToSend = [[TCStatement alloc] initWithJSON:[localStatement statementJson]];
+//        
+//        NSLog(@"sending statement to server");
+//        [self sendStatementToServer:statementToSend withCompletionBlock:^{
+//            NSLog(@"statement posted... deleting");
+//            [statementQueue markStatementPosted:statementToSend];
+//            
+//        }withErrorBlock:^(NSError *error)
+//         {
+//             NSLog(@"error sendAllStatementsToServerWithCompletionBlock : %@",[error userInfo]);
+//             dispatch_async(dispatch_get_main_queue(), ^{
+//                 errorBlock(error);
+//             });
+//         }];
+//    }
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        completionBlock();
+//    });
+//}
 
 - (void) markStatementPosted:(TCStatement *)statementPosted
 {
+    NSLog(@"deleting statementId %@", statementPosted.statementId);
     //update statement row with postedDate
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"LocalStatement" inManagedObjectContext:_managedObjectContext];
@@ -126,8 +159,8 @@
         NSLog(@"error marking statement posted : %@", [error userInfo]);
     }
 
-    LocalStatements *statementToUpdate = [fetchedObjects objectAtIndex:0];
-    [statementToUpdate setPostedDate:[NSDate date]];
+    LocalStatements *statementToDelete = [fetchedObjects objectAtIndex:0];
+    [_managedObjectContext deleteObject:statementToDelete];
     
     if (![_managedObjectContext save:&error]) {
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);

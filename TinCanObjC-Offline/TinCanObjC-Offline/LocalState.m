@@ -16,5 +16,7 @@
 @dynamic createDate;
 @dynamic postDate;
 @dynamic querystring;
+@dynamic activityId;
+@dynamic agentJson;
 
 @end

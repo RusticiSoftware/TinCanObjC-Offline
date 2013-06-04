@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12D78" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="LocalState" representedClassName="LocalState" syncable="YES">
+        <attribute name="activityId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="agentJson" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="createDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="postDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="querystring" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="stateContents" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="stateId" optional="YES" attributeType="String" syncable="YES"/>
@@ -15,7 +16,7 @@
         <attribute name="statementJson" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="LocalState" positionX="-155" positionY="-54" width="128" height="118"/>
+        <element name="LocalState" positionX="-155" positionY="-54" width="128" height="135"/>
         <element name="LocalStatement" positionX="-335" positionY="-54" width="128" height="120"/>
     </elements>
 </model>
