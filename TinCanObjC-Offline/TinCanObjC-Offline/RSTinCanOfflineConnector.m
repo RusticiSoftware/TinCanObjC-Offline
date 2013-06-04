@@ -1,9 +1,8 @@
 //
-//  RSTinCanConnector.m
-//  RSTCAPI
+//  RSTinCanOfflineConnector.m
 //
 //  Created by Brian Rogers on 2/28/13.
-//  Copyright (c) 2013 Brian Rogers. All rights reserved.
+//  Copyright (c) 2013 Rustici Software. All rights reserved.
 //
 
 #import "RSTinCanOfflineConnector.h"
@@ -30,13 +29,6 @@
 }
 
 
-/**
- Calls saveStatement on each configured LRS, provide callback to make it asynchronous
- 
- @method sendStatement
- @param {TinCan.Statement|Object} statement Send statement to LRS
- @param {Function} [callback] Callback function to execute on completion
- */
 - (void) sendStatementToServer:(TCStatement *)statementToSend withCompletionBlock:(void (^)())completionBlock withErrorBlock:(void(^)(TCError *))errorBlock
 {
     TCLRS *lrs = [[TCLRS alloc] initWithOptions:[_recordStore objectAtIndex:0]];
@@ -55,16 +47,7 @@
       }];
 }
 
-/**
- Calls retrieveStatement on each configured LRS until it gets a result, provide callback to make it asynchronous
- 
- @method getStatement
- @param {String} statement Statement ID to get
- @param {Function} [callback] Callback function to execute on completion
- @return {TinCan.Statement} Retrieved statement from LRS
- 
- TODO: make TinCan track statements it has seen in a local cache to be returned easily
- */
+
 - (void) getStatementWithId:(NSString *)statementId withOptions:(NSDictionary *)options withCompletionBlock:(void(^)(TCStatement *))completionBlock withErrorBlock:(void(^)(TCError *))errorBlock
 {
     
@@ -83,13 +66,7 @@
          }];
 }
 
-/**
- Calls saveStatements with list of prepared statements
- 
- @method sendStatements
- @param {Array} Array of statements to send
- @param {Function} Callback function to execute on completion
- */
+
 - (void) sendStatementsToServer:(TCStatementCollection *)statementArray withCompletionBlock:(void(^)())completionBlock withErrorBlock:(void(^)(TCError *))errorBlock
 {
     TCLRS *lrs = [[TCLRS alloc] initWithOptions:[_recordStore objectAtIndex:0]];
@@ -107,17 +84,6 @@
     }];
 }
 
-/**
- @method getStatements
- @param {Object} [cfg] Configuration for request
- @param {Boolean} [cfg.sendActor] Include default actor in query params
- @param {Boolean} [cfg.sendActivity] Include default activity in query params
- @param {Object} [cfg.params] Parameters used to filter
- 
- @param {Function} [cfg.callback] Function to run at completion
- 
- TODO: support multiple LRSs and flag to use single
- */
 - (void) getStatementsFromServerWithOptions:(TCQueryOptions *)options withCompletionBlock:(void(^)(NSArray *))completionBlock withErrorBlock:(void(^)(TCError *))errorBlock
 {
     TCLRS *lrs = [[TCLRS alloc] initWithOptions:[_recordStore objectAtIndex:0]];
@@ -135,18 +101,6 @@
     }];
 }
 
-/**
- @method getState
- @param {String} key Key to retrieve from the state
- @param {Object} [cfg] Configuration for request
- @param {Object} [cfg.agent] Agent used in query,
- defaults to 'actor' property if empty
- @param {Object} [cfg.activity] Activity used in query,
- defaults to 'activity' property if empty
- @param {Object} [cfg.registration] Registration used in query,
- defaults to 'registration' property if empty
- @param {Function} [cfg.callback] Function to run with state
- */
 - (void) getStateFromServerWithStateId:(NSString *)stateId withActivityId:(NSString *)activityId withAgent:(TCAgent *)agent withRegistration:(NSString *)registration withOptions:(NSDictionary *)options withCompletionBlock:(void(^)(NSDictionary *))completionBlock withErrorBlock:(void(^)(TCError *))errorBlock
 {
     TCLRS *lrs = [[TCLRS alloc] initWithOptions:[_recordStore objectAtIndex:0]];
@@ -165,19 +119,28 @@
          }];
 }
 
-/**
- @method setState
- @param {String} key Key to store into the state
- @param {String|Object} val Value to store into the state, objects will be stringified to JSON
- @param {Object} [cfg] Configuration for request
- @param {Object} [cfg.agent] Agent used in query,
- defaults to 'actor' property if empty
- @param {Object} [cfg.activity] Activity used in query,
- defaults to 'activity' property if empty
- @param {Object} [cfg.registration] Registration used in query,
- defaults to 'registration' property if empty
- @param {Function} [cfg.callback] Function to run with state
- */
+- (void) getLocalStateForStateId:(NSString *)stateId withCompletionBlock:(void(^)(NSDictionary *))completionBlock
+{
+    _managedObjectContext = [TCOfflineDataManager sharedInstance].mainObjectContext;
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"LocalState"
+                                              inManagedObjectContext:_managedObjectContext];
+    [fetchRequest setEntity:entity];
+    [fetchRequest setReturnsObjectsAsFaults:NO];
+    [fetchRequest setFetchLimit:1];
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"stateId == %@", stateId]];
+    
+    NSError *error = nil;
+    NSArray *fetchResults = [_managedObjectContext
+                             executeFetchRequest:fetchRequest
+                             error:&error];
+    LocalState *stateFetched = (LocalState *) [fetchResults objectAtIndex:0];
+    
+    NSDictionary *result = [NSJSONSerialization JSONObjectWithData:[stateFetched.stateContents dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
+    completionBlock(result);
+}
+
+
 - (void) setStateWithValue:(NSDictionary *)value withStateId:(NSString *)stateId withActivityId:(NSString *)activityId withAgent:(TCAgent *)agent withRegistration:(NSString *)registration withOptions:(NSDictionary *)options withCompletionBlock:(void(^)())completionBlock withErrorBlock:(void(^)(TCError *))errorBlock
 {
     _managedObjectContext = [TCOfflineDataManager sharedInstance].mainObjectContext;
@@ -203,8 +166,11 @@
         NSLog(@"statement added to localstorage");
         completionBlock();
     }
-    
+}
 
+- (void) deleteStateWithStateId:(NSString *)stateId withActivityId:(NSString *)activityId withAgent:(TCAgent *)agent withRegistration:(NSString *)registration withOptions:(NSDictionary *)options withCompletionBlock:(void(^)())completionBlock withErrorBlock:(void(^)(TCError *))errorBlock
+{
+    
 }
 
 - (void) enqueueStatement:(TCStatement *)statement withCompletionBlock:(void(^)())completionBlock withErrorBlock:(void(^)(NSError *))errorBlock
@@ -275,7 +241,6 @@
 - (void) sendLocalStateToServerWithCompletionBlock:(void(^)())completionBlock withErrorBlock:(void(^)(NSError *))errorBlock
 {
     // get the most recent distinct rows and send them
-    NSLog(@"getting statement list");
     _managedObjectContext = [TCOfflineDataManager sharedInstance].mainObjectContext;
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"LocalState"
@@ -297,7 +262,6 @@
     }else{
         [fetchResults enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
 
-            //NSLog(@"%@", obj);
             __block LocalState *stateFromDb = (LocalState *)obj;
             TCLRS *lrs = [[TCLRS alloc] initWithOptions:[_recordStore objectAtIndex:0]];
 
@@ -325,16 +289,12 @@
                 completionBlock();
             });
         }];
-        
-        
     }
 }
 
 - (void)deleteSendStateRowsWithCompletionBlock:(void(^)())completionBlock
 {
-    
-    NSLog(@"state to delete count %li", (unsigned long)_stateToDelete.count);
-    
+ 
     NSError *error;
 
     for (LocalState *stateRow in _stateToDelete) {
@@ -345,7 +305,6 @@
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
         completionBlock();
     }else{
-        NSLog(@"************* deleted state");
         [_stateToDelete removeAllObjects];
         completionBlock();
     }

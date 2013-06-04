@@ -1,9 +1,8 @@
 //
 //  TCStatementCollection.m
-//  RSTCAPI
 //
 //  Created by Brian Rogers on 3/7/13.
-//  Copyright (c) 2013 Brian Rogers. All rights reserved.
+//  Copyright (c) 2013 Rustici Software. All rights reserved.
 //
 
 #import "TCOfflineStatementCollection.h"

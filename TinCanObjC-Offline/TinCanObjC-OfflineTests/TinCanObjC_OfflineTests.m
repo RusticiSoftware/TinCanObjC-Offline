@@ -95,7 +95,43 @@
 //    return statementToSend;
 //}
 
-- (void) testOfflineState
+//- (void) testOfflineState
+//{
+//    TCAgent *actor = [[TCAgent alloc] initWithName:@"Brian Rogers" withMbox:@"mailto:brian@tincanapi.com"];
+//    
+//    NSMutableDictionary *stateContents = [[NSMutableDictionary alloc] init];
+//    [stateContents setValue:@"page 1" forKey:@"bookmark"];
+//    
+//    NSString *stateId = [TCUtil GetUUID];
+//    
+//    // put some state
+//    [tincan setStateWithValue:[stateContents copy] withStateId:stateId withActivityId:[TCUtil encodeURL:@"http://tincanapi.com/test"] withAgent:actor withRegistration:nil withOptions:nil withCompletionBlock:^{
+//        [[TestSemaphor sharedInstance] lift:@"saveState"];
+//    }withErrorBlock:^(NSError *error){
+//        [[TestSemaphor sharedInstance] lift:@"saveState"];
+//    }];
+//    [[TestSemaphor sharedInstance] waitForKey:@"saveState"];
+//    
+//    [tincan sendLocalStateToServerWithCompletionBlock:^{
+//        NSLog(@"sent all or 50 records");
+//        [[TestSemaphor sharedInstance] lift:@"sendState"];
+//    }withErrorBlock:^(NSError *error){
+//        NSLog(@"error : %@", [error userInfo]);
+//        [[TestSemaphor sharedInstance] lift:@"sendState"];
+//    }];
+//    [[TestSemaphor sharedInstance] waitForKey:@"sendState"];
+//    
+//    //26CE7504-C478-44FA-96AF-3332E561EE7B
+//    [tincan getStateFromServerWithStateId:@"26CE7504-C478-44FA-96AF-3332E561EE7B" withActivityId:[TCUtil encodeURL:@"http://tincanapi.com/test"] withAgent:actor withRegistration:nil withOptions:nil withCompletionBlock:^(NSDictionary *state){
+//        NSLog(@"got state from server : %@", state);
+//        [[TestSemaphor sharedInstance] lift:@"getState"];
+//    }withErrorBlock:^(TCError *error){
+//        
+//    }];
+//    [[TestSemaphor sharedInstance] waitForKey:@"getState"];
+//}
+
+- (void) testGetLocalState
 {
     TCAgent *actor = [[TCAgent alloc] initWithName:@"Brian Rogers" withMbox:@"mailto:brian@tincanapi.com"];
     
@@ -112,14 +148,9 @@
     }];
     [[TestSemaphor sharedInstance] waitForKey:@"saveState"];
     
-    [tincan sendLocalStateToServerWithCompletionBlock:^{
-        NSLog(@"sent all or 50 records");
-        [[TestSemaphor sharedInstance] lift:@"sendState"];
-    }withErrorBlock:^(NSError *error){
-        NSLog(@"error : %@", [error userInfo]);
-        [[TestSemaphor sharedInstance] lift:@"sendState"];
+    [tincan getLocalStateForStateId:stateId withCompletionBlock:^(NSDictionary *state) {
+        NSLog(@"%@", state);
     }];
-    [[TestSemaphor sharedInstance] waitForKey:@"sendState"];
 }
 
 //- (void) testSendLocalState

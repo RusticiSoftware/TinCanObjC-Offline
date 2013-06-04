@@ -12,6 +12,7 @@
 			buildConfigurationList = D3062C5116FBFC6E004F746A /* Build configuration list for PBXAggregateTarget "TinCanObjC-OfflineSDK" */;
 			buildPhases = (
 				D3BADF8F17503DED00AE748C /* ShellScript */,
+				D3E0658F175D69E80075A2CA /* ShellScript */,
 			);
 			dependencies = (
 				D3062C5516FBFC7A004F746A /* PBXTargetDependency */,
@@ -477,6 +478,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "XCODEBUILD_PATH=/Applications/Xcode.app/Contents/Developer/usr/bin\nXCODEBUILD=$XCODEBUILD_PATH/xcodebuild\n\n$XCODEBUILD -project TinCanObjC-Offline.xcodeproj -target \"TinCanObjC-Offline\" -sdk \"iphoneos\" -configuration \"Release\" clean build\n\n$XCODEBUILD -project TinCanObjC-Offline.xcodeproj -target \"TinCanObjC-Offline\" -sdk \"iphonesimulator\" -configuration \"Release\" clean build\n\nlipo -create -output \"build/libTinCanObjC-Offline-Combined.a\" \"build/Release-iphoneos/libTinCanObjC-Offline.a\" \"build/Release-iphonesimulator/libTinCanObjC-Offline.a\"";
+		};
+		D3E0658F175D69E80075A2CA /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/appledoc --project-name \"TinCanObjC-Offline\" --project-company \"Rustici Software\" --company-id \"com.rusticisoftware\" --output \"~/Desktop/TinCanObjC-Offline-Docs\" --logformat xcode --keep-undocumented-objects --keep-undocumented-members --keep-intermediate-files --no-repeat-first-par --no-warn-invalid-crossref --ignore include --ignore \"*.m\" --ignore \"TinCanObjC_OfflineTests.h\" --ignore \"TCOfflineDataManager.h\" --ignore \"TestSemaphor.h\" --index-desc \"docs.markdown\" ./TinCanObjC-Offline";
 		};
 /* End PBXShellScriptBuildPhase section */
 
