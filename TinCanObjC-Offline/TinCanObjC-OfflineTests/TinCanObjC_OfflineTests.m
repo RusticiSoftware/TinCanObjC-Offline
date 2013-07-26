@@ -40,17 +40,83 @@
     [super tearDown];
 }
 
-//- (void)testOfflineStatements
-//{
-//    
-//    NSMutableDictionary *statementOptions = [[NSMutableDictionary alloc] init];
-//    [statementOptions setValue:@"http://tincanapi.com/test" forKey:@"activityId"];
-//    [statementOptions setValue:[[TCVerb alloc] initWithId:@"http://adlnet.gov/expapi/verbs/experienced" withVerbDisplay:[[TCLocalizedValues alloc] initWithLanguageCode:@"en-US" withValue:@"experienced"]] forKey:@"verb"];
-//    [statementOptions setValue:@"http://adlnet.gov/expapi/activities/course" forKey:@"activityType"];
-//    TCStatement *statementToSend = [self createTestStatementWithOptions:statementOptions];
-//    
-//    //add a statement to the queue
-//    [tincan enqueueStatement:statementToSend withCompletionBlock:^{
+- (void)testOfflineStatements
+{
+    // setup the variables we're using for this statement
+    NSString *activityId = @"http://lifeway.com/video/223344334234234456";
+    NSString *activityName = @"Sample Video Name";
+    NSString *activityDescription = @"Sample Video Description";
+    
+    NSString *externalPackageId = @"";
+    NSString *externalRegistrationId = @"";
+    NSString *externalConfiguration = @"";
+    
+    NSNumber *videoDuration = [NSNumber numberWithInt:802.467];
+    NSNumber *lastPosition = [NSNumber numberWithInt:102.342];
+    
+    NSString *registrationUUID = [TCUtil GetUUID];
+    
+    
+    // build the actor
+    TCAgent *actor = [[TCAgent alloc] initWithName:@"Brian Rogers" withMbox:@"mailto:brian@tincanapi.com"];
+    
+
+    // build the verb
+    TCVerb *verb = [[TCVerb alloc] initWithId:@"http://adlnet.gov/expapi/verbs/attempted" withVerbDisplay:[[TCLocalizedValues alloc] initWithLanguageCode:@"und" withValue:@"attempted"]];
+    
+    
+    // build the result
+    NSMutableDictionary *resultExtensions = [[NSMutableDictionary alloc] init];
+    [resultExtensions setValue:externalRegistrationId forKey:@"http://scorm.com/scorm-engine/externalRegistration"];
+    [resultExtensions setValue:externalPackageId forKey:@"http://scorm.com/scorm-engine/externalPackage"];
+    [resultExtensions setValue:externalConfiguration forKey:@"http://scorm.com/scorm-engine/externalConfiguration"];
+    [resultExtensions setValue:videoDuration forKey:@"http://lifeway.com/brightcove-video/duration"];
+    [resultExtensions setValue:lastPosition forKey:@"http://lifeway.com/brightcove-video/last-position"];
+    
+    TCResult *result = [[TCResult alloc] initWithResponse:nil withScore:nil withSuccess:[NSNumber numberWithBool:true] withCompletion:[NSNumber numberWithBool:true] withDuration:nil withExtensions:resultExtensions];
+    
+    
+    // build the context
+    NSMutableDictionary *contextActivities = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *groupingDict = [[NSMutableDictionary alloc] init];
+    [groupingDict setValue:activityId forKey:@"id"];
+    [groupingDict setValue:@"Activity" forKey:@"objectType"];
+    NSArray *groupingArray = @[groupingDict];
+    [contextActivities setValue:groupingArray forKey:@"grouping"];
+    
+    TCContext *context = [[TCContext alloc] initWithRegistration:registrationUUID withInstructor:nil withTeam:nil withContextActivities:contextActivities withExtensions:nil];
+
+    
+    // build the activity definition, extensions and the activity object
+    NSMutableDictionary *objectExtensions = [[NSMutableDictionary alloc] init];
+    [objectExtensions setValue:videoDuration forKey:@"http://lifeway.com/brightcove-video/duration"];
+    
+    TCActivityDefinition *actDef = [[TCActivityDefinition alloc] initWithName:[[TCLocalizedValues alloc] initWithLanguageCode:@"en-US" withValue:activityName]
+                                                              withDescription:[[TCLocalizedValues alloc] initWithLanguageCode:@"en-US" withValue:activityDescription]
+                                                                     withType:@"http://adlnet.gov/expapi/activities/course"
+                                                               withExtensions:objectExtensions
+                                                          withInteractionType:nil
+                                                  withCorrectResponsesPattern:nil
+                                                                  withChoices:nil
+                                                                    withScale:nil
+                                                                   withTarget:nil
+                                                                    withSteps:nil];
+    
+    TCActivity *activity = [[TCActivity alloc] initWithId:activityId withActivityDefinition:actDef];
+    
+
+    
+
+    
+    TCStatement *statementToSend = [[TCStatement alloc] initWithId:[TCUtil GetUUID] withActor:actor withTarget:activity withVerb:verb withResult:result withContext:context];
+
+
+    NSLog(@"statementToSend JSON - %@", [statementToSend JSONString]);
+    
+
+    
+    //add a statement to the queue
+//    [ enqueueStatement:statementToSend withCompletionBlock:^{
 //        NSLog(@"statement enqued");
 //    }withErrorBlock:^(NSError *error){
 //        NSLog(@"error : %@", [error userInfo]);
@@ -67,33 +133,37 @@
 //        STFail(@"error : %@", [error userInfo]);
 //        [[TestSemaphor sharedInstance] lift:@"flushStatements"];
 //    }];
-//    
-//    [[TestSemaphor sharedInstance] waitForKey:@"flushStatements"];
-//}
-//
-//- (TCStatement *)createTestStatementWithOptions:(NSDictionary *)options
-//{
-//    TCAgent *actor = [[TCAgent alloc] initWithName:@"Brian Rogers" withMbox:@"mailto:brian@tincanapi.com"];
-//    
-//    TCActivityDefinition *actDef = [[TCActivityDefinition alloc] initWithName:[[TCLocalizedValues alloc] initWithLanguageCode:@"en-US" withValue:@"http://tincanapi.com/test"]
-//                                                              withDescription:[[TCLocalizedValues alloc] initWithLanguageCode:@"en-US" withValue:@"Description for test statement"]
-//                                                                     withType:[options valueForKey:@"activityType"]
-//                                                               withExtensions:nil
-//                                                          withInteractionType:nil
-//                                                  withCorrectResponsesPattern:nil
-//                                                                  withChoices:nil
-//                                                                    withScale:nil
-//                                                                   withTarget:nil
-//                                                                    withSteps:nil];
-//    
-//    TCActivity *activity = [[TCActivity alloc] initWithId:[options valueForKey:@"activityId"] withActivityDefinition:actDef];
-//    
-//    TCVerb *verb = [options valueForKey:@"verb"];
-//    
-//    TCStatement *statementToSend = [[TCStatement alloc] initWithId:[TCUtil GetUUID] withActor:actor withTarget:activity withVerb:verb withResult:nil];
-//    
-//    return statementToSend;
-//}
+    
+    //[[TestSemaphor sharedInstance] waitForKey:@"flushStatements"];
+}
+
+- (TCStatement *)createTestStatementWithOptions:(NSDictionary *)options
+{
+    TCAgent *actor = [[TCAgent alloc] initWithName:@"Brian Rogers" withMbox:@"mailto:brian@tincanapi.com"];
+    
+    TCActivityDefinition *actDef = [[TCActivityDefinition alloc] initWithName:[[TCLocalizedValues alloc] initWithLanguageCode:@"en-US" withValue:@"http://tincanapi.com/test"]
+                                                              withDescription:[[TCLocalizedValues alloc] initWithLanguageCode:@"en-US" withValue:@"Description for test statement"]
+                                                                     withType:[options valueForKey:@"activityType"]
+                                                               withExtensions:nil
+                                                          withInteractionType:nil
+                                                  withCorrectResponsesPattern:nil
+                                                                  withChoices:nil
+                                                                    withScale:nil
+                                                                   withTarget:nil
+                                                                    withSteps:nil];
+    
+    TCActivity *activity = [[TCActivity alloc] initWithId:[options valueForKey:@"activityId"] withActivityDefinition:actDef];
+    
+    TCVerb *verb = [options valueForKey:@"verb"];
+    
+    TCResult *result = [options valueForKey:@"result"];
+    
+    TCContext *context = [options valueForKey:@"context"];
+    
+    TCStatement *statementToSend = [[TCStatement alloc] initWithId:[TCUtil GetUUID] withActor:actor withTarget:activity withVerb:verb withResult:result withContext:context];
+    
+    return statementToSend;
+}
 
 //- (void) testOfflineState
 //{
@@ -131,27 +201,27 @@
 //    [[TestSemaphor sharedInstance] waitForKey:@"getState"];
 //}
 
-- (void) testGetLocalState
-{
-    TCAgent *actor = [[TCAgent alloc] initWithName:@"Brian Rogers" withMbox:@"mailto:brian@tincanapi.com"];
-    
-    NSMutableDictionary *stateContents = [[NSMutableDictionary alloc] init];
-    [stateContents setValue:@"page 1" forKey:@"bookmark"];
-    
-    NSString *stateId = [TCUtil GetUUID];
-    
-    // put some state
-    [tincan setStateWithValue:[stateContents copy] withStateId:stateId withActivityId:[TCUtil encodeURL:@"http://tincanapi.com/test"] withAgent:actor withRegistration:nil withOptions:nil withCompletionBlock:^{
-        [[TestSemaphor sharedInstance] lift:@"saveState"];
-    }withErrorBlock:^(NSError *error){
-        [[TestSemaphor sharedInstance] lift:@"saveState"];
-    }];
-    [[TestSemaphor sharedInstance] waitForKey:@"saveState"];
-    
-    [tincan getLocalStateForStateId:stateId withCompletionBlock:^(NSDictionary *state) {
-        NSLog(@"%@", state);
-    }];
-}
+//- (void) testGetLocalState
+//{
+//    TCAgent *actor = [[TCAgent alloc] initWithName:@"Brian Rogers" withMbox:@"mailto:brian@tincanapi.com"];
+//    
+//    NSMutableDictionary *stateContents = [[NSMutableDictionary alloc] init];
+//    [stateContents setValue:@"page 1" forKey:@"bookmark"];
+//    
+//    NSString *stateId = [TCUtil GetUUID];
+//    
+//    // put some state
+//    [tincan setStateWithValue:[stateContents copy] withStateId:stateId withActivityId:[TCUtil encodeURL:@"http://tincanapi.com/test"] withAgent:actor withRegistration:nil withOptions:nil withCompletionBlock:^{
+//        [[TestSemaphor sharedInstance] lift:@"saveState"];
+//    }withErrorBlock:^(NSError *error){
+//        [[TestSemaphor sharedInstance] lift:@"saveState"];
+//    }];
+//    [[TestSemaphor sharedInstance] waitForKey:@"saveState"];
+//    
+//    [tincan getLocalStateForStateId:stateId withCompletionBlock:^(NSDictionary *state) {
+//        NSLog(@"%@", state);
+//    }];
+//}
 
 //- (void) testSendLocalState
 //{
