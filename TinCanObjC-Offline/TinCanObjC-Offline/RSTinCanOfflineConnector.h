@@ -12,6 +12,7 @@
 #import "TCLRS.h"
 #import "TCQueryOptions.h"
 #import "TCAgent.h"
+#import "TCResult.h"
 
 /**
  The front line connector for persisting tincan statements and state while offline and posting to your LRS when connected. This connector acts as a passthrough for the TinCanObjC library and wraps it with offline functionality.
